@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Happy Birthday!</title>
+    <meta name="theme-color" content="#FF69B4">
+    <meta name="description" content="A special birthday celebration website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="confetti-container" class="confetti-container"></div>
+    <div id="balloons-container" class="balloons-container"></div>
+    
+    <!-- Intro Section with Embroidery Pattern -->
+    <section id="intro">
+        <!-- Add embroidery styling elements -->
+        <div class="embroidery-pattern"></div>
+        <div class="texture-overlay"></div>
+        <div class="stitch-detail"></div>
+        
+        <!-- Add flower-like embroidery cells -->
+        <div class="flower-cell top-right">
+            <svg viewBox="0 0 100 100">
+                <path class="flower-petal" d="M50 10 C70 20, 90 40, 80 50 C90 60, 70 80, 50 90 C30 80, 10 60, 20 50 C10 40, 30 20, 50 10Z"></path>
+                <circle class="flower-center" cx="50" cy="50" r="15"></circle>
+                <path class="flower-detail" d="M50 35 C55 40, 60 45, 50 50 C40 45, 45 40, 50 35"></path>
+                <path class="flower-detail" d="M50 65 C55 60, 60 55, 50 50 C40 55, 45 60, 50 65"></path>
+                <path class="flower-detail" d="M35 50 C40 55, 45 60, 50 50 C55 40, 60 45, 65 50"></path>
+            </svg>
+        </div>
+        
+        <div class="flower-cell bottom-left">
+            <svg viewBox="0 0 100 100">
+                <path class="flower-petal" d="M50 10 C65 25, 75 35, 90 50 C75 65, 65 75, 50 90 C35 75, 25 65, 10 50 C25 35, 35 25, 50 10Z"></path>
+                <circle class="flower-center" cx="50" cy="50" r="20"></circle>
+                <circle class="flower-detail" cx="50" cy="50" r="10"></circle>
+                <path class="flower-detail" d="M40 25 C45 35, 50 45, 50 50 C50 45, 55 35, 60 25"></path>
+                <path class="flower-detail" d="M40 75 C45 65, 50 55, 50 50 C50 55, 55 65, 60 75"></path>
+                <path class="flower-detail" d="M25 40 C35 45, 45 50, 50 50 C45 50, 35 55, 25 60"></path>
+                <path class="flower-detail" d="M75 40 C65 45, 55 50, 50 50 C55 50, 65 55, 75 60"></path>
+                <path class="flower-stem" d="M50 90 C48 110, 60 120, 65 130"></path>
+            </svg>
+        </div>
+        
+        <div class="embroidery-leaf left">
+            <svg viewBox="0 0 100 50">
+                <path class="leaf-main" d="M10 25 C30 0, 70 0, 90 25 C70 50, 30 50, 10 25Z"></path>
+                <path class="leaf-vein" d="M50 0 C50 10, 50 15, 50 50"></path>
+                <path class="leaf-vein" d="M50 10 C60 15, 70 20, 80 25"></path>
+                <path class="leaf-vein" d="M50 10 C40 15, 30 20, 20 25"></path>
+            </svg>
+        </div>
+        
+        <div class="elegant-shapes"></div>
+        <div class="birthday-gradient"></div>
+        <div class="birthday-number">❤️</div>
+        <div id="hearts-container" class="floating-hearts"></div>
+        
+        <div class="z-10 relative">
+            <h1 class="text-5xl mb-4 animate-title" id="animated-title">
+                Happy Birthday <span class="birthday-text">Sweetheart</span><span class="cake-icon">🎂</span>
+            </h1>
+            <p class="text-xl mb-6 animate-subtitle">Today is all about celebrating the amazing person you are and the joy you bring to my life!</p>
+            
+            <button id="launch-balloons" class="birthday-button mb-8">
+                Launch Birthday Balloons! 🎈
+            </button>
+            
+            <div class="flex justify-center items-center mt-4">
+                <span class="pulse-dot mr-2"></span>
+                <p class="text-sm">Scroll down to discover your gifts</p>
+                <span class="pulse-dot ml-2"></span>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="chevron"></div>
+            <div class="chevron"></div>
+            <div class="chevron"></div>
+        </div>
+    </section>
+    
+    <!-- Photo Box Section with Embroidery Border -->
+    <section id="photo-box" class="py-20 px-5 embroidery-border bg-embroidery">
+        <!-- Add flower cell to this section too -->
+        <div class="flower-cell mid-right">
+            <svg viewBox="0 0 100 100">
+                <path class="flower-petal" d="M50 20 C60 10, 80 10, 90 30 C100 50, 90 70, 80 80 C60 90, 40 90, 20 80 C10 70, 0 50, 10 30 C20 10, 40 10, 50 20Z"></path>
+                <circle class="flower-center" cx="50" cy="50" r="15"></circle>
+                <path class="flower-detail" d="M30 30 C40 40, 45 45, 50 50 C45 45, 40 40, 30 30"></path>
+                <path class="flower-detail" d="M70 30 C60 40, 55 45, 50 50 C55 45, 60 40, 70 30"></path>
+                <path class="flower-detail" d="M30 70 C40 60, 45 55, 50 50 C45 55, 40 60, 30 70"></path>
+                <path class="flower-detail" d="M70 70 C60 60, 55 55, 50 50 C55 55, 60 60, 70 70"></path>
+            </svg>
+        </div>
+        
+        <div class="embroidery-leaf right">
+            <svg viewBox="0 0 100 50">
+                <path class="leaf-main" d="M10 25 C30 0, 70 0, 90 25 C70 50, 30 50, 10 25Z"></path>
+                <path class="leaf-vein" d="M50 0 C50 10, 50 15, 50 50"></path>
+                <path class="leaf-vein" d="M50 10 C60 15, 70 20, 80 25"></path>
+                <path class="leaf-vein" d="M50 10 C40 15, 30 20, 20 25"></path>
+            </svg>
+        </div>
+        
+        <div class="max-w-5xl mx-auto text-center" data-aos="fade-up">
+            <h2 class="text-3xl mb-8">Our Love Journey 🎁</h2>
+            <div class="box-container">
+                <span class="clickable-box" id="reveal-photos" data-target="photo-container">Click to reveal our special moments</span>
+                <div class="photo-reveal" id="photo-container">
+                    <div class="photo-grid"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Game Section -->
+    <section id="game" class="py-20 px-5 bg-gradient-to-r from-primary-light/30 to-accent/20">
+        <div class="stitch-detail"></div>
+        <div class="max-w-5xl mx-auto text-center" data-aos="fade-up">
+            <h2 class="text-3xl mb-8">Birthday Memory Game 🎮</h2>
+            <p class="mb-10">Find all matching pairs to unlock a birthday surprise</p>
+            <div class="memory-game"></div>
+        </div>
+    </section>
+    
+    <!-- Photo Slider Section with Embroidery Border -->
+    <section id="photo-slider" class="py-20 px-5 embroidery-border bg-embroidery">
+        <div class="max-w-5xl mx-auto text-center" data-aos="fade-up">
+            <h2 class="text-3xl mb-8">Birthday Memories Together 📸</h2>
+            <p class="mb-10">Swipe through our most cherished moments</p>
+            <div class="slider-container">
+                <div class="slider-track"></div>
+                <button class="slider-nav prev">❮</button>
+                <button class="slider-nav next">❯</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Letter Section -->
+    <section id="letter" class="py-20 px-5 bg-gradient-to-r from-primary-light/30 to-accent/20">
+        <div class="texture-overlay"></div>
+        <div class="stitch-detail"></div>
+        
+        <!-- Add another flower cell -->
+        <div class="flower-cell bottom-left" style="bottom: 10%; left: 15%; transform: rotate(5deg) scale(0.9);">
+            <svg viewBox="0 0 100 100">
+                <path class="flower-petal" d="M50 10 C70 20, 90 40, 80 50 C90 60, 70 80, 50 90 C30 80, 10 60, 20 50 C10 40, 30 20, 50 10Z" style="fill: rgba(147, 112, 219, 0.2); stroke: #9370DB;"></path>
+                <circle class="flower-center" cx="50" cy="50" r="15"></circle>
+                <path class="flower-detail" d="M50 35 C55 40, 60 45, 50 50 C40 45, 45 40, 50 35"></path>
+                <path class="flower-detail" d="M50 65 C55 60, 60 55, 50 50 C40 55, 45 60, 50 65"></path>
+                <path class="flower-detail" d="M35 50 C40 55, 45 60, 50 50 C55 40, 60 45, 65 50"></path>
+            </svg>
+        </div>
+        
+        <div class="max-w-5xl mx-auto text-center" data-aos="fade-up">
+            <h2 class="text-3xl mb-8">Birthday Wishes From My Heart 💌</h2>
+            <button class="letter-button" id="show-letter">Open My Birthday Letter</button>
+            <div class="letter-content" id="letter-content">
+                <div class="letter-text"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-10 px-5 text-center bg-primary text-white">
+        <p>Made with ❤️ for your special day 🎉</p>
+    </footer>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

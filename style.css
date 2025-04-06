@@ -1,0 +1,1586 @@
+/* Basic styles */
+:root {
+    --primary: #ff6b95; /* Romantic pink */
+    --primary-light: #ffb6c1; /* Light pink */
+    --primary-dark: #e54c7c; /* Darker pink */
+    --accent: #9370DB; /* Medium purple */
+    --text: #5c3344; /* Muted plum */
+    --background: #fff0f5; /* Lavender blush */
+    --card-bg: #ffffff;
+    --border-light: #ffd9e6;
+    --gold: #ffd700;
+    --birthday-blue: #5bc0de;
+    --birthday-yellow: #f0ad4e;
+    --confetti-1: #ffbe0b;
+    --confetti-2: #fb5607;
+    --confetti-3: #ff006e;
+    --confetti-4: #8338ec;
+    --confetti-5: #3a86ff;
+    --primary-color: #FF69B4;  /* Hot Pink */
+    --secondary-color: #4CAF50; /* Green */
+    --accent-color: #FFC107;   /* Amber */
+    --text-color: #333333;
+    --background-light: #FAFAFA;
+    --birthday-pink: #FF69B4;
+    --birthday-purple: #9C27B0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Dancing Script', cursive;
+    color: var(--primary);
+}
+
+section {
+    width: 100%;
+    padding: 2rem 1rem;
+}
+
+/* Enhanced Intro section */
+#intro {
+    background: linear-gradient(135deg, rgba(254,235,215,0.9) 0%, rgba(255,222,220,0.8) 50%, rgba(252,247,240,0.9) 100%);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Floating hearts */
+.floating-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff6b95' opacity='0.6'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center center;
+    opacity: 0;
+    animation: floatHeart 6s linear infinite;
+}
+
+@keyframes floatHeart {
+    0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0deg) scale(0.6);
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-800%) rotate(360deg) scale(1.2);
+    }
+}
+
+/* Enhanced text animations */
+.animate-title {
+    opacity: 0;
+    animation: revealTitle 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+    animation-delay: 0.5s;
+}
+
+.animate-subtitle {
+    opacity: 0;
+    animation: revealSubtitle 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+    animation-delay: 1.2s;
+}
+
+@keyframes revealTitle {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.8);
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes revealSubtitle {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* Letter animation */
+.letter-animate {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px) rotate(10deg);
+    animation: letterReveal 0.5s forwards;
+}
+
+@keyframes letterReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+    }
+}
+
+/* Enhanced pulse dots */
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    animation: enhancedPulse 2s infinite;
+    box-shadow: 0 0 10px rgba(255, 107, 149, 0.5);
+}
+
+@keyframes enhancedPulse {
+    0% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(255, 107, 149, 0.7);
+    }
+    50% {
+        transform: scale(1.2);
+        box-shadow: 0 0 10px 5px rgba(255, 107, 149, 0.3);
+    }
+    100% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(255, 107, 149, 0.7);
+    }
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 2s;
+    opacity: 0;
+}
+
+.scroll-indicator .chevron {
+    position: absolute;
+    width: 28px;
+    height: 8px;
+    opacity: 0;
+    transform: scale(0.3);
+    animation: scrollMove 3s ease-out infinite;
+}
+
+.scroll-indicator .chevron:before,
+.scroll-indicator .chevron:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 51%;
+    background: var(--primary);
+}
+
+.scroll-indicator .chevron:before {
+    left: 0;
+    transform: skewY(30deg);
+}
+
+.scroll-indicator .chevron:after {
+    right: 0;
+    width: 50%;
+    transform: skewY(-30deg);
+}
+
+.scroll-indicator .chevron:first-child {
+    animation-delay: 0s;
+}
+
+.scroll-indicator .chevron:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.scroll-indicator .chevron:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes scrollMove {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.3);
+    }
+    20%, 50% {
+        opacity: 1;
+        transform: translateY(0) scale(0.7);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.3);
+    }
+}
+
+.elegant-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.elegant-shapes:before, .elegant-shapes:after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: floatAnimation 15s linear infinite;
+}
+
+.elegant-shapes:before {
+    top: -150px;
+    right: -150px;
+}
+
+.elegant-shapes:after {
+    bottom: -150px;
+    left: -150px;
+    animation-delay: 7.5s;
+}
+
+@keyframes floatAnimation {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(180deg);
+    }
+    100% {
+        transform: translateY(0) rotate(360deg);
+    }
+}
+
+/* Photo Box section */
+.box-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.clickable-box {
+    cursor: pointer;
+    padding: 15px 30px;
+    background-color: var(--primary-light);
+    color: white;
+    display: inline-block;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(216, 112, 147, 0.2);
+    text-align: center;
+}
+
+.clickable-box:hover {
+    background-color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(216, 112, 147, 0.3);
+}
+
+.clickable-box.active {
+    background-color: var(--primary-dark);
+}
+
+.photo-reveal {
+    display: none;
+    margin-top: 20px;
+    border-radius: 15px;
+    padding: 25px;
+    background-color: var(--card-bg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    transition: all 0.5s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 15px;
+}
+
+.photo-item {
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    height: 200px;
+    transform: scale(0);
+    animation: scaleIn 0.5s ease forwards;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.photo-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover img {
+    transform: scale(1.05);
+}
+
+.photo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: white;
+    padding: 15px 10px 10px;
+    font-size: 0.9em;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover .photo-caption {
+    transform: translateY(0);
+}
+
+@keyframes scaleIn {
+    to {
+        transform: scale(1);
+    }
+}
+
+/* Game section */
+.memory-game {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
+    perspective: 1000px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.memory-card {
+    height: 120px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: scale(1);
+    transition: transform 0.5s;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.memory-card:active {
+    transform: scale(0.95);
+    transition: transform 0.2s;
+}
+
+.memory-card.flip {
+    transform: rotateY(180deg);
+}
+
+.memory-card.matched {
+    box-shadow: 0 0 15px var(--gold);
+    animation: matched 1s ease;
+}
+
+@keyframes matched {
+    0%, 100% {
+        box-shadow: 0 0 15px var(--gold);
+    }
+    50% {
+        box-shadow: 0 0 25px var(--gold);
+    }
+}
+
+.front-face,
+.back-face {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    position: absolute;
+    border-radius: 8px;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.front-face {
+    transform: rotateY(180deg);
+    background-color: white;
+}
+
+.back-face {
+    background: linear-gradient(45deg, var(--primary-light), var(--primary));
+    color: white;
+}
+
+.congrats-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 100;
+    animation: popIn 0.5s ease;
+    width: 90%;
+    max-width: 400px;
+}
+
+.congrats-message h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.congrats-message p {
+    margin-bottom: 20px;
+}
+
+.play-again {
+    padding: 10px 20px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.play-again:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Photo Slider section */
+.slider-container {
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    height: 400px;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    height: 100%;
+}
+
+.slider-item {
+    flex: 0 0 calc(33.333% - 20px);
+    margin: 0 10px;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.slider-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.slider-item:hover img {
+    transform: scale(1.05);
+}
+
+.slider-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: white;
+    padding: 15px 10px 10px;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.slider-nav:hover {
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.slider-nav.prev {
+    left: 20px;
+}
+
+.slider-nav.next {
+    right: 20px;
+}
+
+/* Letter section */
+.letter-button {
+    cursor: pointer;
+    padding: 15px 30px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 10px 25px rgba(216, 112, 147, 0.3);
+}
+
+.letter-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(216, 112, 147, 0.4);
+}
+
+.letter-content {
+    display: none;
+    margin-top: 20px;
+    padding: 30px;
+    border-radius: 15px;
+    background-color: var(--card-bg);
+    text-align: left;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.letter-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffb6c1' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.letter-content::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 100px;
+    height: 100px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffb6c1' opacity='0.3'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+.letter-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3em;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.letter-text p {
+    margin-bottom: 15px;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.letter-text .signature {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 30px;
+    color: var(--primary);
+}
+
+/* Custom classes for better responsiveness */
+.max-w-5xl {
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-5xl {
+    font-size: 3rem;
+    line-height: 1.2;
+}
+
+.text-3xl {
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+    line-height: 1.6;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+.mb-10 {
+    margin-bottom: 2.5rem;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.mt-8 {
+    margin-top: 2rem;
+}
+
+.mr-2 {
+    margin-right: 0.5rem;
+}
+
+.ml-2 {
+    margin-left: 0.5rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.relative {
+    position: relative;
+}
+
+.z-10 {
+    z-index: 10;
+}
+
+.py-10 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.px-5 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+.py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.min-h-screen {
+    min-height: 100vh;
+}
+
+/* From-primary utility */
+.from-primary-light\/30 {
+    --tw-gradient-from: rgba(255, 182, 193, 0.3);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 182, 193, 0));
+}
+
+/* To-accent utility */
+.to-accent\/20 {
+    --tw-gradient-to: rgba(147, 112, 219, 0.2);
+}
+
+/* Gradient direction right */
+.bg-gradient-to-r {
+    background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+/* Fade In animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced Media Queries */
+@media (max-width: 1024px) {
+    .text-5xl {
+        font-size: 2.5rem;
+    }
+    
+    .text-3xl {
+        font-size: 1.75rem;
+    }
+    
+    .py-20 {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+    
+    .slider-container {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .text-5xl {
+        font-size: 2rem;
+    }
+    
+    .text-3xl {
+        font-size: 1.5rem;
+    }
+    
+    .text-xl {
+        font-size: 1.1rem;
+    }
+    
+    .memory-game {
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+    }
+    
+    .slider-item {
+        flex: 0 0 calc(50% - 20px);
+    }
+    
+    .letter-text {
+        font-size: 1.1em;
+    }
+    
+    .py-20 {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    
+    .slider-container {
+        height: 300px;
+    }
+    
+    .memory-card {
+        height: 100px;
+    }
+    
+    .front-face, .back-face {
+        font-size: 32px;
+    }
+
+    /* Improved mobile layout */
+    #intro {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .birthday-number {
+        font-size: 4rem;
+        right: 5%;
+        bottom: 5%;
+    }
+
+    .scroll-indicator {
+        bottom: 15px;
+    }
+    
+    .floating-hearts {
+        opacity: 0.7;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-5xl {
+        font-size: 1.75rem;
+    }
+    
+    .text-3xl {
+        font-size: 1.35rem;
+    }
+    
+    .text-xl {
+        font-size: 1rem;
+    }
+    
+    .memory-game {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 280px;
+    }
+    
+    .slider-item {
+        flex: 0 0 calc(100% - 20px);
+    }
+    
+    .photo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        grid-gap: 10px;
+    }
+    
+    .letter-text {
+        font-size: 1em;
+    }
+    
+    .letter-content {
+        padding: 20px 15px;
+    }
+    
+    .memory-card {
+        height: 90px;
+    }
+    
+    .front-face, .back-face {
+        font-size: 28px;
+        padding: 8px;
+    }
+    
+    .clickable-box, .letter-button {
+        padding: 12px 24px;
+        font-size: 0.95em;
+    }
+    
+    .py-20 {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+    
+    .slider-container {
+        height: 250px;
+    }
+    
+    .photo-item {
+        height: 160px;
+    }
+    
+    .py-10 {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    /* Enhanced mobile responsiveness */
+    .birthday-button {
+        width: 100%;
+        max-width: 280px;
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+
+    .letter-button {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .congrats-message {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .congrats-message h3 {
+        font-size: 1.5em;
+    }
+
+    .elegant-shapes:before, .elegant-shapes:after {
+        width: 200px;
+        height: 200px;
+    }
+
+    /* Better balloon experience on mobile */
+    .balloon {
+        width: 25px;
+        height: 35px;
+    }
+
+    .balloon::before {
+        height: 25px;
+    }
+}
+
+/* Adding a specific small phone size breakpoint */
+@media (max-width: 360px) {
+    .text-5xl {
+        font-size: 1.5rem;
+    }
+    
+    .memory-game {
+        max-width: 250px;
+    }
+    
+    .memory-card {
+        height: 80px;
+    }
+    
+    .front-face, .back-face {
+        font-size: 24px;
+        padding: 6px;
+    }
+    
+    .slider-container {
+        height: 220px;
+    }
+    
+    .photo-item {
+        height: 140px;
+    }
+
+    /* Improved tiny screen experience */
+    .letter-text {
+        font-size: 0.95em;
+    }
+
+    .birthday-button, .letter-button {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+
+    .text-3xl {
+        font-size: 1.25rem;
+    }
+
+    .slider-nav {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+
+    #intro {
+        min-height: 90vh;
+    }
+}
+
+/* Ensure everything has touch-friendly sizing */
+@media (hover: none) {
+    .clickable-box, .letter-button, .play-again, .slider-nav {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    
+    .slider-nav {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+    }
+    
+    .photo-caption {
+        /* Always show captions on touch devices */
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    /* Improved touch targets */
+    .memory-card {
+        min-height: 80px;
+    }
+
+    .slider-nav {
+        opacity: 0.8;
+    }
+
+    /* Prevent unwanted overflow */
+    body {
+        max-width: 100vw;
+    }
+
+    /* Fix tap highlight */
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Ensure buttons have proper hit areas */
+    button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Fix for the launchBalloons function visibility */
+[data-aos] {
+    pointer-events: none;
+}
+
+[data-aos].aos-animate {
+    pointer-events: auto;
+}
+
+/* Ensure AOS animations work properly */
+[data-aos="fade-up"] {
+    transform: translate3d(0, 40px, 0);
+}
+
+[data-aos="fade-up"].aos-animate {
+    transform: translate3d(0, 0, 0);
+}
+
+/* Add opacity to intro title to ensure text is visible even before animation starts */
+#animated-title {
+    opacity: 1;
+}
+
+/* Birthday Confetti Animation */
+.confetti-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    opacity: 0;
+    animation: confetti-fall 5s ease-in-out infinite;
+}
+
+@keyframes confetti-fall {
+    0% {
+        opacity: 1;
+        top: -10%;
+        transform: translateX(0) rotateX(0) rotateY(0);
+    }
+    100% {
+        opacity: 0;
+        top: 100%;
+        transform: translateX(100px) rotateX(360deg) rotateY(180deg);
+    }
+}
+
+/* Birthday cake elements */
+.cake-icon {
+    display: inline-block;
+    font-size: 2rem;
+    margin-left: 10px;
+    vertical-align: middle;
+    animation: cake-bounce 2s infinite;
+}
+
+@keyframes cake-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Balloon Animation */
+.balloons-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.balloon {
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    border-radius: 50%;
+    bottom: -100px;
+    animation: balloon-float 10s ease-in-out forwards;
+    opacity: 0;
+}
+
+.balloon::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.2);
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes balloon-float {
+    0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0);
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100vh) rotate(20deg);
+    }
+}
+
+/* Birthday Button */
+.birthday-button {
+    cursor: pointer;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, var(--birthday-blue), var(--accent));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 10px 25px rgba(90, 24, 154, 0.3);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.birthday-button:hover {
+    background: linear-gradient(135deg, var(--accent), var(--birthday-blue));
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(90, 24, 154, 0.4);
+}
+
+/* Enhanced background for birthday theme */
+.birthday-gradient {
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.7) 0%, rgba(147, 112, 219, 0.4) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.birthday-number {
+    font-size: 6rem;
+    font-weight: bold;
+    color: var(--primary);
+    opacity: 0.2;
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+    font-family: 'Dancing Script', cursive;
+    transform: rotate(-15deg);
+}
+
+/* Text animation for birthday */
+.birthday-text {
+    animation: birthday-colors 4s infinite;
+    font-weight: bold;
+}
+
+@keyframes birthday-colors {
+    0%, 100% {
+        color: var(--primary);
+    }
+    25% {
+        color: var(--birthday-blue);
+    }
+    50% {
+        color: var(--confetti-4);
+    }
+    75% {
+        color: var(--birthday-yellow);
+    }
+}
+
+/* Add mobile-specific optimizations */
+.mobile-device {
+    /* Optimize animations for mobile */
+    --animation-speed-factor: 0.8;
+}
+
+/* Important mobile utilities */
+.mobile-only {
+    display: none;
+}
+
+/* Make sure images don't overflow on mobile */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Ensure site works well on mobile */
+html, body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+}
+
+/* Add touch-specific improvements */
+@media (hover: none) {
+    /* Improve touch targets */
+    button, 
+    .clickable-box, 
+    .letter-button,
+    .slider-nav,
+    .memory-card {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Fix iOS Safari 100vh issue */
+    #intro {
+        height: 100vh;
+        height: -webkit-fill-available;
+        height: stretch;
+    }
+    
+    /* Better scroll indications for touch */
+    .scroll-indicator {
+        opacity: 0.8;
+        animation-duration: 2s;
+    }
+    
+    /* Ensure elements have proper hit areas for touch */
+    button, 
+    .clickable-box, 
+    .letter-button,
+    .memory-card,
+    .slider-nav {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Adaptive font size for very small screens */
+@media (max-width: 320px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .text-5xl {
+        font-size: 1.4rem;
+    }
+    
+    .text-3xl {
+        font-size: 1.2rem;
+    }
+    
+    .birthday-button,
+    .letter-button {
+        font-size: 0.85rem;
+        padding: 8px 16px;
+    }
+    
+    .letter-text {
+        font-size: 0.9em;
+    }
+    
+    .slider-container {
+        height: 200px;
+    }
+}
+
+/* Embroidery Flower Cells - inspired by the image */
+.flower-cell {
+    position: absolute;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.85;
+}
+
+.flower-cell.top-right {
+    top: 15%;
+    right: 10%;
+    width: 150px;
+    height: 150px;
+    transform: rotate(15deg);
+}
+
+.flower-cell.bottom-left {
+    bottom: 20%;
+    left: 8%;
+    width: 180px;
+    height: 180px;
+    transform: rotate(-10deg);
+}
+
+.flower-cell.mid-right {
+    top: 40%;
+    right: 15%;
+    width: 120px;
+    height: 120px;
+    transform: rotate(-5deg);
+}
+
+/* SVG flower pattern styling */
+.flower-cell svg {
+    width: 100%;
+    height: 100%;
+}
+
+.flower-cell path {
+    fill: none;
+    stroke-linecap: round;
+}
+
+.flower-petal {
+    fill: rgba(229, 76, 124, 0.2);
+    stroke: #e54c7c;
+    stroke-width: 1.5;
+    stroke-dasharray: 3, 2;
+}
+
+.flower-center {
+    fill: rgba(218, 165, 32, 0.15);
+    stroke: #b22222;
+    stroke-width: 1;
+    stroke-dasharray: 2, 2;
+}
+
+.flower-detail {
+    stroke: #8834a3;
+    stroke-width: 0.8;
+    stroke-dasharray: 2, 3;
+}
+
+.flower-stem {
+    stroke: #4a7c59;
+    stroke-width: 1.5;
+    stroke-dasharray: 4, 2;
+}
+
+/* Green leaf elements */
+.embroidery-leaf {
+    position: absolute;
+    pointer-events: none;
+    z-index: 4;
+    opacity: 0.8;
+    width: 120px;
+    height: 80px;
+}
+
+.embroidery-leaf.left {
+    bottom: 25%;
+    left: 5%;
+    transform: rotate(30deg) scale(0.8);
+}
+
+.embroidery-leaf.right {
+    top: 20%;
+    right: 5%;
+    transform: rotate(-20deg) scale(0.7);
+}
+
+.embroidery-leaf svg {
+    width: 100%;
+    height: 100%;
+}
+
+.leaf-main {
+    fill: rgba(74, 124, 89, 0.15);
+    stroke: #4a7c59;
+    stroke-width: 1.5;
+    stroke-dasharray: 4, 2;
+}
+
+.leaf-vein {
+    fill: none;
+    stroke: #2d5c3e;
+    stroke-width: 0.8;
+    stroke-dasharray: 3, 3;
+}
+
+/* Embroidery Pattern Styling - inspired by the image */
+.embroidery-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    background-color: rgba(250, 239, 210, 0.6); /* Warmer beige background like the image */
+    background-image: 
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 5C28 10 25 12 20 15C15 18 10 20 5 30C10 40 15 42 20 45C25 48 28 50 30 55C32 50 35 48 40 45C45 42 50 40 55 30C50 20 45 18 40 15C35 12 32 10 30 5Z' fill='none' stroke='%23e54c7c' stroke-width='1.5' stroke-dasharray='3,2' opacity='0.6'/%3E%3Ccircle cx='30' cy='30' r='3' fill='%23FFD700' opacity='0.4'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M60 20C55 35 45 45 35 50C25 55 15 60 10 80C25 100 35 105 50 110C65 115 75 115 80 120C85 115 95 115 110 110C125 105 135 100 150 80C145 60 135 55 125 50C115 45 105 35 100 20C95 35 85 45 75 50C65 55 55 55 50 60C45 55 35 55 25 50C15 45 5 35 0 20Z' fill='none' stroke='%23B22222' stroke-width='2' stroke-dasharray='3,3' opacity='0.3'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+    opacity: 0.8;
+}
+
+/* Add texture overlay to give fabric-like feel */
+.texture-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath d='M1 2.5A1.5 1.5 0 0 0 2.5 1 1.5 1.5 0 0 0 1 2.5zm2.5 0A1.5 1.5 0 0 0 5 1 1.5 1.5 0 0 0 2.5 2.5zM0 4a1.5 1.5 0 0 0 2.5-1A1.5 1.5 0 0 0 0 4zm5 0a1.5 1.5 0 0 0-2.5-1A1.5 1.5 0 0 0 5 4z' fill='%23997755' opacity='0.1'/%3E%3C/svg%3E");
+    opacity: 0.3;
+    mix-blend-mode: overlay;
+    z-index: 2;
+}
+
+/* Small decorative stitches */
+.stitch-detail {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: 
+        radial-gradient(circle, rgba(178, 34, 34, 0.1) 1px, transparent 1px),
+        radial-gradient(circle, rgba(218, 165, 32, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px, 20px 20px;
+    background-position: 0 0, 15px 15px;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0.6;
+}
+
+/* Decorative border for sections */
+.embroidery-border {
+    position: relative;
+}
+
+.embroidery-border::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    right: 20px;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='10' viewBox='0 0 20 10'%3E%3Cpath d='M0 5 Q 5 0, 10 5 Q 15 10, 20 5' fill='none' stroke='%23B22222' stroke-width='1' stroke-dasharray='2,2' opacity='0.5'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    z-index: 4;
+}
+
+.embroidery-border::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    right: 20px;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='10' viewBox='0 0 20 10'%3E%3Cpath d='M0 5 Q 5 10, 10 5 Q 15 0, 20 5' fill='none' stroke='%23B22222' stroke-width='1' stroke-dasharray='2,2' opacity='0.5'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    z-index: 4;
+}
+
+/* Section styling with embroidery background */
+.bg-embroidery {
+    background-color: rgba(245, 240, 230, 0.5);
+    position: relative;
+}
+
+.bg-embroidery::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='15' fill='none' stroke='%23b22222' stroke-width='0.5' stroke-dasharray='3,3' opacity='0.2'/%3E%3Ccircle cx='20' cy='20' r='10' fill='none' stroke='%23daa520' stroke-width='0.5' stroke-dasharray='2,2' opacity='0.2'/%3E%3Ccircle cx='20' cy='20' r='5' fill='none' stroke='%234a7c59' stroke-width='0.5' stroke-dasharray='1,1' opacity='0.2'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.2;
+} 
