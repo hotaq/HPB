@@ -1,7 +1,7 @@
 // Basic script structure - will add functionality later
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Happy Birthday Website loaded! 💖');
+    console.log('แอบ hack web รึป่าวเรา');
 
     // Check for mobile device
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -45,6 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize the letter reveal
     initLetterReveal();
+    
+    // Initialize the bento gallery
+    initBentoGallery();
     
     // Add swipe functionality for touch devices
     addSwipeSupport();
@@ -235,108 +238,113 @@ function initConfetti(isMobile = false) {
     }, isMobile ? 15000 : 10000); // Less frequent updates on mobile
 }
 
-// ------- BALLOON ANIMATION --------
+// ------- FLOWER ANIMATION --------
 function initBalloons(isMobile = false) {
-    const balloonsContainer = document.getElementById('balloons-container');
-    const launchButton = document.getElementById('launch-balloons');
+    const flowersContainer = document.getElementById('flowers-container');
+    const launchButton = document.getElementById('launch-flowers');
     
-    if (!balloonsContainer || !launchButton) return;
+    if (!flowersContainer || !launchButton) return;
     
-    const balloonColors = [
-        '#FF5733', // Orange-red
-        '#4CAF50', // Green
-        '#2196F3', // Blue
-        '#9C27B0', // Purple
-        '#FFEB3B', // Yellow
-        '#FF9800', // Orange
-        '#E91E63', // Pink
-        '#00BCD4'  // Cyan
+    const flowerVariants = [
+        'default',
+        'variant-1',
+        'variant-2',
+        'variant-3'
     ];
     
-    // Launch balloons animation
-    function launchBalloons(count = 30) {
-        // Clear any existing balloons
-        balloonsContainer.innerHTML = '';
+    // Launch flowers animation
+    function launchFlowers(count = 30) {
+        // Clear any existing flowers
+        flowersContainer.innerHTML = '';
         
-        // Reduce balloon count on mobile
+        // Reduce flower count on mobile
         const adjustedCount = isMobile ? Math.floor(count * 0.6) : count;
         
         for (let i = 0; i < adjustedCount; i++) {
-            const balloon = document.createElement('div');
-            balloon.className = 'balloon';
+            const flower = document.createElement('div');
             
-            // Set random properties
-            const color = balloonColors[Math.floor(Math.random() * balloonColors.length)];
-            balloon.style.backgroundColor = color;
-            balloon.style.left = `${5 + Math.random() * 90}%`;
+            // Assign random variant
+            const variant = flowerVariants[Math.floor(Math.random() * flowerVariants.length)];
+            flower.className = variant === 'default' ? 'flower' : `flower ${variant}`;
             
-            // Slightly smaller balloons on mobile
+            // Set random position
+            flower.style.left = `${5 + Math.random() * 90}%`;
+            
+            // Slightly smaller flowers on mobile
             const sizeFactor = isMobile ? 0.8 : 1;
-            balloon.style.width = `${(30 + Math.random() * 20) * sizeFactor}px`;
-            balloon.style.height = `${(40 + Math.random() * 30) * sizeFactor}px`;
+            const baseSize = 30 + Math.random() * 20;
+            flower.style.width = `${baseSize * sizeFactor}px`;
+            flower.style.height = `${baseSize * sizeFactor}px`;
             
             // Faster animation on mobile
             const duration = isMobile ? (4 + Math.random() * 6) : (5 + Math.random() * 10);
-            balloon.style.animationDuration = `${duration}s`;
-            balloon.style.animationDelay = `${Math.random() * 3}s`;
+            flower.style.animationDuration = `${duration}s`;
+            flower.style.animationDelay = `${Math.random() * 3}s`;
             
-            balloonsContainer.appendChild(balloon);
+            flowersContainer.appendChild(flower);
             
             // Clean up after animation completes
             setTimeout(() => {
-                if (balloon.parentNode === balloonsContainer) {
-                    balloonsContainer.removeChild(balloon);
+                if (flower.parentNode === flowersContainer) {
+                    flowersContainer.removeChild(flower);
                 }
             }, duration * 1000 + 5000);
         }
     }
     
-    // Text balloon animation - optimized for mobile
-    function createTextBalloon(text = "Happy Birthday!") {
-        const balloon = document.createElement('div');
-        balloon.className = 'balloon';
+    // Text flower animation - optimized for mobile
+    function createTextFlower(text = "Happy Birthday!") {
+        const flower = document.createElement('div');
+        flower.className = 'flower';
         
-        // Special styling for text balloon
-        balloon.style.width = 'auto';
-        balloon.style.height = 'auto';
+        // Special styling for text flower
+        flower.style.width = 'auto';
+        flower.style.height = 'auto';
         
-        // Smaller text balloon on mobile
-        balloon.style.minWidth = isMobile ? '120px' : '150px';
-        balloon.style.backgroundColor = balloonColors[Math.floor(Math.random() * balloonColors.length)];
-        balloon.style.borderRadius = '50%';
-        balloon.style.padding = isMobile ? '20px' : '30px';
-        balloon.style.display = 'flex';
-        balloon.style.alignItems = 'center';
-        balloon.style.justifyContent = 'center';
-        balloon.style.color = 'white';
-        balloon.style.fontWeight = 'bold';
-        balloon.style.fontSize = isMobile ? '14px' : '16px';
-        balloon.style.textAlign = 'center';
-        balloon.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
-        balloon.textContent = text;
+        // Create a container for text
+        const textContainer = document.createElement('div');
+        
+        // Smaller text flower on mobile
+        textContainer.style.minWidth = isMobile ? '120px' : '150px';
+        textContainer.style.backgroundColor = '#e54c7c';
+        textContainer.style.borderRadius = '50%';
+        textContainer.style.padding = isMobile ? '20px' : '30px';
+        textContainer.style.display = 'flex';
+        textContainer.style.alignItems = 'center';
+        textContainer.style.justifyContent = 'center';
+        textContainer.style.color = 'white';
+        textContainer.style.fontWeight = 'bold';
+        textContainer.style.fontSize = isMobile ? '14px' : '16px';
+        textContainer.style.textAlign = 'center';
+        textContainer.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+        textContainer.textContent = text;
+        
+        // Reset background image
+        flower.style.backgroundImage = 'none';
+        flower.appendChild(textContainer);
         
         // Position in center
-        balloon.style.left = '50%';
-        balloon.style.transform = 'translateX(-50%)';
+        flower.style.left = '50%';
+        flower.style.transform = 'translateX(-50%)';
         
-        balloonsContainer.appendChild(balloon);
+        flowersContainer.appendChild(flower);
         
         // Clean up after animation completes
         setTimeout(() => {
-            if (balloon.parentNode === balloonsContainer) {
-                balloonsContainer.removeChild(balloon);
+            if (flower.parentNode === flowersContainer) {
+                flowersContainer.removeChild(flower);
             }
         }, 15000);
     }
     
-    // Add event listener to the balloon button
+    // Add event listener to the flower button
     launchButton.addEventListener('click', () => {
-        // Launch regular balloons
-        launchBalloons(30);
+        // Launch regular flowers
+        launchFlowers(30);
         
-        // Launch one text balloon after a delay
+        // Launch one text flower after a delay
         setTimeout(() => {
-            createTextBalloon("Happy Birthday!");
+            createTextFlower("Happy Birthday!");
         }, 2000);
         
         // Show more confetti
@@ -345,9 +353,9 @@ function initBalloons(isMobile = false) {
         }
     });
     
-    // Launch a few balloons initially
+    // Launch a few flowers initially
     setTimeout(() => {
-        launchBalloons(isMobile ? 3 : 5);
+        launchFlowers(isMobile ? 3 : 5);
     }, 3000);
 }
 
@@ -404,77 +412,40 @@ function initSmoothScroll() {
 
 // ------- PHOTO BOX SECTION --------
 function initPhotoBox() {
-    const clickableBox = document.querySelector('.clickable-box');
-    const photoReveal = document.querySelector('.photo-reveal');
     const photoGrid = document.querySelector('.photo-grid');
+    const photoContainer = document.getElementById('photo-container');
+    
+    if (!photoGrid) return;
 
-    // Special moments photos with romantic descriptions
+    // Immediately show the photos instead of waiting for click
+    photoGrid.innerHTML = ''; // Clear any existing content
+    
+    // Create a grid of photos
     const photos = [
-        { url: 'https://source.unsplash.com/featured/300x300/?couple,sunset', alt: 'Our magical sunset walk on the beach' },
-        { url: 'https://source.unsplash.com/featured/300x300/?couple,beach', alt: 'Beach day adventures together' },
-        { url: 'https://source.unsplash.com/featured/300x300/?couple,dinner', alt: 'Candlelit dinner date at our favorite restaurant' },
-        { url: 'https://source.unsplash.com/featured/300x300/?couple,winter', alt: 'Snowy day cuddles by the fireplace' },
-        { url: 'https://source.unsplash.com/featured/300x300/?couple,dance', alt: 'Dancing under the stars at midnight' },
-        { url: 'https://source.unsplash.com/featured/300x300/?couple,travel', alt: 'Adventure together in our dream destination' },
-        { url: 'https://source.unsplash.com/featured/300x300/?couple,coffee', alt: 'Morning coffee moments watching the sunrise' },
-        { url: 'https://source.unsplash.com/featured/300x300/?couple,picnic', alt: 'Picnic in the park with your favorite foods' }
+        "https://source.unsplash.com/featured/600x600/?romantic,couple,1",
+        "https://source.unsplash.com/featured/600x600/?romantic,couple,2",
+        "https://source.unsplash.com/featured/600x600/?romantic,couple,3",
+        "https://source.unsplash.com/featured/600x600/?love,couple,4",
+        "https://source.unsplash.com/featured/600x600/?love,couple,5",
+        "https://source.unsplash.com/featured/600x600/?love,couple,6"
     ];
-
-    if (clickableBox && photoReveal && photoGrid) {
-        // Clear existing content first
-        photoGrid.innerHTML = '';
+    
+    photos.forEach((photo, index) => {
+        const photoElement = document.createElement('div');
+        photoElement.className = 'photo-item';
+        photoElement.style.animationDelay = `${index * 0.1}s`;
         
-        // Add caption display to each photo
-        photos.forEach((photo, index) => {
-            const photoItem = document.createElement('div');
-            photoItem.className = 'photo-item';
-            photoItem.style.animationDelay = `${index * 0.1}s`;
-
-            const img = document.createElement('img');
-            img.src = photo.url;
-            img.alt = photo.alt;
-            img.loading = 'lazy';
-            
-            const caption = document.createElement('div');
-            caption.className = 'photo-caption';
-            caption.textContent = photo.alt;
-            
-            photoItem.appendChild(img);
-            photoItem.appendChild(caption);
-            photoGrid.appendChild(photoItem);
-            
-            // Add touch events for mobile
-            img.addEventListener('touchstart', function() {
-                caption.style.transform = 'translateY(0)';
-            }, {passive: true});
-        });
-
-        // Use both click and touch events for better mobile support
-        ['click', 'touchend'].forEach(eventType => {
-            clickableBox.addEventListener(eventType, () => {
-                // Toggle visibility with a nice transition
-                if (photoReveal.style.display === 'none' || photoReveal.style.display === '') {
-                    photoReveal.style.display = 'block';
-                    setTimeout(() => {
-                        photoReveal.style.opacity = '1';
-                        photoReveal.style.transform = 'translateY(0)';
-                    }, 10);
-                    clickableBox.textContent = 'Hide Our Memories';
-                    clickableBox.classList.add('active');
-                } else {
-                    photoReveal.style.opacity = '0';
-                    photoReveal.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        photoReveal.style.display = 'none';
-                    }, 500);
-                    clickableBox.textContent = 'Click to Reveal Our Memories';
-                    clickableBox.classList.remove('active');
-                }
-            }, eventType === 'touchend' ? {passive: true} : false);
-        });
-    } else {
-        console.error('Photo box elements not found!');
-    }
+        const img = document.createElement('img');
+        img.src = photo;
+        img.alt = `Special memory ${index + 1}`;
+        img.loading = 'lazy';
+        
+        photoElement.appendChild(img);
+        photoGrid.appendChild(photoElement);
+    });
+    
+    // Show the photo container with animation
+    photoContainer.classList.add('visible');
 }
 
 // ------- MEMORY GAME SECTION --------
@@ -491,8 +462,8 @@ function initMemoryGame() {
     let firstCard, secondCard;
     let matchedPairs = 0;
     
-    // Card data (expanded love-themed emojis with variety)
-    const cardIcons = ['❤️', '💘', '💝', '💖', '💗', '💓', '💞', '💟', '💑', '💏', '🌹', '🥰', '💋', '😘', '🫶', '💐'];
+    // Card data (gift and celebration themed emojis)
+    const cardIcons = ['🎁', '🎀', '🧸', '🎂', '🍰', '🧁', '🍬', '🍭', '🎈', '🎊', '🎉', '🎄', '🎪', '🎮', '🏆', '🧩'];
     const gamePairs = cardIcons.slice(0, 8); // Use only 8 pairs for a 4x4 grid
     
     // Double the icons for pairs and shuffle
@@ -606,7 +577,7 @@ function initMemoryGame() {
         congratsDiv.className = 'congrats-message';
         congratsDiv.innerHTML = `
             <h3>Congratulations! 🎉</h3>
-            <p>You've found all the matching love symbols, just like we found each other! Your love and dedication shine through in everything you do.</p>
+            <p>You've found all the matching birthday gifts! These are just a few of the special things I want to give to you on your birthday.</p>
             <button class="play-again">Play Again</button>
         `;
         
@@ -721,6 +692,9 @@ function initPhotoSlider() {
     let slidesVisible = 3; // Default for desktop
     let touchStartX = 0;
     let touchEndX = 0;
+    let autoplayInterval; // For automatic sliding
+    const autoplayDelay = 3000; // 3 seconds delay between slides
+    let isPaused = false; // To track if autoplay is paused
     
     // Responsive slides visible
     function updateSlidesVisible() {
@@ -733,7 +707,7 @@ function initPhotoSlider() {
         }
         
         // Update slider after changing slides visible
-        updateSliderPosition();
+        updateSliderPosition(currentPosition);
     }
     
     // Initial setup
@@ -741,7 +715,9 @@ function initPhotoSlider() {
     window.addEventListener('resize', updateSlidesVisible);
     
     // Update slider position
-    function updateSliderPosition(position) {
+    function updateSliderPosition(position = currentPosition) {
+        currentPosition = position; // Update current position
+        
         const sliderTrack = document.querySelector('.slider-track');
         const sliderItems = document.querySelectorAll('.slider-item');
         const prevButton = document.querySelector('.slider-nav.prev');
@@ -778,9 +754,47 @@ function initPhotoSlider() {
         return { itemWidth, slidesVisible };
     }
     
+    // Function for automatic advancing of slides
+    function startAutoplay() {
+        // Clear any existing interval first
+        stopAutoplay();
+        
+        // Set new interval
+        autoplayInterval = setInterval(() => {
+            if (!isPaused) {
+                // If we're at the end, go back to the start
+                if (currentPosition >= totalSlides - slidesVisible) {
+                    currentPosition = 0;
+                } else {
+                    // Otherwise advance one slide
+                    currentPosition++;
+                }
+                updateSliderPosition(currentPosition);
+            }
+        }, autoplayDelay);
+    }
+    
+    // Function to stop autoplay
+    function stopAutoplay() {
+        if (autoplayInterval) {
+            clearInterval(autoplayInterval);
+            autoplayInterval = null;
+        }
+    }
+    
+    // Pause autoplay on hover/touch
+    sliderContainer.addEventListener('mouseenter', () => {
+        isPaused = true;
+    });
+    
+    sliderContainer.addEventListener('mouseleave', () => {
+        isPaused = false;
+    });
+    
     // Handle touch events
     function handleTouchStart(e) {
         touchStartX = e.touches[0].clientX;
+        isPaused = true; // Pause on touch
     }
     
     function handleTouchMove(e) {
@@ -792,15 +806,20 @@ function initPhotoSlider() {
             // Swipe left
             if (currentPosition < totalSlides - slidesVisible) {
                 currentPosition++;
-                updateSliderPosition();
+                updateSliderPosition(currentPosition);
             }
         } else if (touchEndX - touchStartX > 50) {
             // Swipe right
             if (currentPosition > 0) {
                 currentPosition--;
-                updateSliderPosition();
+                updateSliderPosition(currentPosition);
             }
         }
+        
+        // Resume autoplay after 3 seconds
+        setTimeout(() => {
+            isPaused = false;
+        }, 3000);
     }
     
     // Add navigation button functionality with both click and touch
@@ -809,15 +828,27 @@ function initPhotoSlider() {
             prevButton.addEventListener(eventType, () => {
                 if (currentPosition > 0) {
                     currentPosition--;
-                    updateSliderPosition();
+                    updateSliderPosition(currentPosition);
                 }
+                
+                // Pause autoplay briefly after manual navigation
+                isPaused = true;
+                setTimeout(() => {
+                    isPaused = false;
+                }, 4000);
             }, eventType === 'touchend' ? {passive: true} : false);
             
             nextButton.addEventListener(eventType, () => {
                 if (currentPosition < totalSlides - slidesVisible) {
                     currentPosition++;
-                    updateSliderPosition();
+                    updateSliderPosition(currentPosition);
                 }
+                
+                // Pause autoplay briefly after manual navigation
+                isPaused = true;
+                setTimeout(() => {
+                    isPaused = false;
+                }, 4000);
             }, eventType === 'touchend' ? {passive: true} : false);
         });
     }
@@ -826,6 +857,12 @@ function initPhotoSlider() {
     sliderContainer.addEventListener('touchstart', handleTouchStart, {passive: true});
     sliderContainer.addEventListener('touchmove', handleTouchMove, {passive: true});
     sliderContainer.addEventListener('touchend', handleTouchEnd, {passive: true});
+    
+    // Start autoplay
+    startAutoplay();
+    
+    // Clean up autoplay when leaving page
+    window.addEventListener('beforeunload', stopAutoplay);
 }
 
 // ------- LETTER REVEAL SECTION --------
@@ -882,10 +919,10 @@ function initLetterReveal() {
                     }, 300 * index); // Stagger by 300ms per paragraph
                 });
                 
-                // Launch a few balloons when the letter is opened
-                if (typeof launchBalloons === 'function') {
+                // Launch a few flowers when the letter is opened
+                if (typeof launchFlowers === 'function') {
                     setTimeout(() => {
-                        launchBalloons(5);
+                        launchFlowers(5);
                     }, 1000);
                 }
             }
@@ -954,4 +991,526 @@ function addSwipeSupport() {
             section.scrollIntoView({ behavior: 'smooth' });
         }
     }
+}
+
+// ------- BENTO GALLERY SECTION --------
+function initBentoGallery() {
+    const bentoGrid = document.getElementById('bento-grid');
+    const galleryModal = document.getElementById('gallery-modal');
+    const modalCloseBtn = document.getElementById('modal-close');
+    const modalMediaContainer = document.querySelector('.modal-media-container');
+    const modalTitle = document.querySelector('.modal-title');
+    const modalDesc = document.querySelector('.modal-desc');
+    const thumbnailContainer = document.querySelector('.thumbnail-container');
+    
+    if (!bentoGrid || !galleryModal) return;
+    
+    // Media items data
+    const mediaItems = [
+        {
+            id: 1,
+            type: "image",
+            title: "Our First Date",
+            desc: "The day everything changed",
+            url: "https://source.unsplash.com/featured/800x600/?couple,date",
+            span: "span-1-3"
+        },
+        {
+            id: 2,
+            type: "video",
+            title: "The Perfect Sunset",
+            desc: "Watching the colors change together",
+            url: "https://cdn.pixabay.com/video/2024/07/24/222837_large.mp4",
+            span: "span-2-2"
+        },
+        {
+            id: 3,
+            type: "image",
+            title: "Our Favorite Trail",
+            desc: "Weekend adventures in nature",
+            url: "https://source.unsplash.com/featured/800x600/?forest,trail",
+            span: "span-1-3"
+        },
+        {
+            id: 4,
+            type: "image",
+            title: "Picnic in the Park",
+            desc: "Laughing under blue skies",
+            url: "https://source.unsplash.com/featured/800x600/?picnic,couple",
+            span: "span-2-2"
+        },
+        {
+            id: 5,
+            type: "video",
+            title: "Colorful Moments",
+            desc: "Celebrating life's vibrant moments",
+            url: "https://cdn.pixabay.com/video/2020/07/30/46026-447087782_large.mp4",
+            span: "span-1-3"
+        },
+        {
+            id: 6,
+            type: "image",
+            title: "Beach Day Together",
+            desc: "Sand between our toes",
+            url: "https://source.unsplash.com/featured/800x600/?beach,couple",
+            span: "span-2-2"
+        },
+        {
+            id: 7,
+            type: "image",
+            title: "Special Dinner",
+            desc: "Candlelight and shared smiles",
+            url: "https://source.unsplash.com/featured/800x600/?dinner,romantic",
+            span: "span-1-2"
+        }
+    ];
+    
+    let selectedItem = null;
+    const videoRefs = {};
+    const videoObservers = {};
+    
+    // Populate the bento grid with media items
+    function populateGrid() {
+        bentoGrid.innerHTML = '';
+        
+        mediaItems.forEach((item, index) => {
+            const itemElement = document.createElement('div');
+            itemElement.className = `bento-item ${item.span}`;
+            itemElement.dataset.id = item.id;
+            itemElement.style.animationDelay = `${index * 0.05}s`;
+            
+            // Create media element based on type
+            if (item.type === 'video') {
+                const video = document.createElement('video');
+                video.src = item.url;
+                video.muted = true;
+                video.loop = true;
+                video.playsInline = true;
+                video.preload = 'metadata';
+                
+                // Add loading spinner
+                const loadingElem = document.createElement('div');
+                loadingElem.className = 'video-loading';
+                loadingElem.innerHTML = '<div class="spinner"></div>';
+                
+                itemElement.appendChild(video);
+                itemElement.appendChild(loadingElem);
+                
+                // Store video reference
+                videoRefs[item.id] = video;
+                
+                // Set up intersection observer for video
+                observeVideo(video, loadingElem);
+            } else {
+                const img = document.createElement('img');
+                img.src = item.url;
+                img.alt = item.title;
+                img.loading = 'lazy';
+                
+                itemElement.appendChild(img);
+            }
+            
+            // Add caption
+            const caption = document.createElement('div');
+            caption.className = 'item-caption';
+            caption.innerHTML = `
+                <h3 class="item-title">${item.title}</h3>
+                <p class="item-desc">${item.desc}</p>
+            `;
+            
+            itemElement.appendChild(caption);
+            
+            // Add click event to open modal
+            itemElement.addEventListener('click', (e) => {
+                // Only open modal if not dragging
+                if (!itemElement.classList.contains('dragging')) {
+                    openModal(item);
+                }
+            });
+            
+            // Make item draggable
+            makeDraggable(itemElement);
+            
+            bentoGrid.appendChild(itemElement);
+        });
+    }
+    
+    // Set up intersection observer for videos
+    function observeVideo(videoElement, loadingElem) {
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Video is visible, try to play it
+                    playVideo(videoElement, loadingElem);
+                } else {
+                    // Video is not visible, pause it
+                    videoElement.pause();
+                }
+            });
+        }, options);
+        
+        observer.observe(videoElement);
+        return observer;
+    }
+    
+    // Play video and handle loading states
+    function playVideo(videoElement, loadingElem) {
+        if (videoElement.readyState >= 3) {
+            // Video is loaded enough to play
+            loadingElem.style.display = 'none';
+            videoElement.play().catch(error => {
+                console.warn('Could not play video:', error);
+            });
+        } else {
+            // Video is still loading
+            loadingElem.style.display = 'flex';
+            
+            // Set up event listener for when video can play
+            videoElement.addEventListener('canplay', function onCanPlay() {
+                loadingElem.style.display = 'none';
+                videoElement.play().catch(error => {
+                    console.warn('Could not play video:', error);
+                });
+                videoElement.removeEventListener('canplay', onCanPlay);
+            });
+        }
+    }
+    
+    // Make element draggable
+    function makeDraggable(element) {
+        let isDragging = false;
+        let startX, startY, startLeft, startTop;
+        let elementIndex, initialOrder;
+        
+        element.addEventListener('mousedown', startDrag);
+        element.addEventListener('touchstart', handleTouchStart, { passive: false });
+        
+        function startDrag(e) {
+            // Only handle left mouse button (primary button)
+            if (e.button !== 0) return;
+            e.preventDefault();
+            
+            isDragging = false; // Start with false, will be set to true on move
+            startX = e.clientX;
+            startY = e.clientY;
+            
+            const rect = element.getBoundingClientRect();
+            startLeft = rect.left;
+            startTop = rect.top;
+            
+            // Save element index in parent
+            const parent = element.parentNode;
+            elementIndex = Array.from(parent.children).indexOf(element);
+            initialOrder = Array.from(parent.children);
+            
+            document.addEventListener('mousemove', onDrag);
+            document.addEventListener('mouseup', stopDrag);
+        }
+        
+        function handleTouchStart(e) {
+            e.preventDefault();
+            
+            const touch = e.touches[0];
+            isDragging = false; // Start with false, will be set to true on move
+            startX = touch.clientX;
+            startY = touch.clientY;
+            
+            const rect = element.getBoundingClientRect();
+            startLeft = rect.left;
+            startTop = rect.top;
+            
+            // Save element index in parent
+            const parent = element.parentNode;
+            elementIndex = Array.from(parent.children).indexOf(element);
+            initialOrder = Array.from(parent.children);
+            
+            document.addEventListener('touchmove', handleTouchMove, { passive: false });
+            document.addEventListener('touchend', handleTouchEnd);
+        }
+        
+        function onDrag(e) {
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            
+            // Only count as dragging if moved more than 5px
+            if (!isDragging && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+                isDragging = true;
+                element.classList.add('dragging');
+            }
+            
+            if (!isDragging) return;
+            
+            element.style.position = 'relative';
+            element.style.zIndex = '10';
+            element.style.transform = `translate(${dx}px, ${dy}px)`;
+            
+            checkPosition(e.clientX, e.clientY);
+        }
+        
+        function handleTouchMove(e) {
+            e.preventDefault();
+            
+            const touch = e.touches[0];
+            const dx = touch.clientX - startX;
+            const dy = touch.clientY - startY;
+            
+            // Only count as dragging if moved more than 5px
+            if (!isDragging && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+                isDragging = true;
+                element.classList.add('dragging');
+            }
+            
+            if (!isDragging) return;
+            
+            element.style.position = 'relative';
+            element.style.zIndex = '10';
+            element.style.transform = `translate(${dx}px, ${dy}px)`;
+            
+            checkPosition(touch.clientX, touch.clientY);
+        }
+        
+        function checkPosition(x, y) {
+            const parent = element.parentNode;
+            const siblings = Array.from(parent.children);
+            
+            for (let i = 0; i < siblings.length; i++) {
+                if (siblings[i] === element) continue;
+                
+                const rect = siblings[i].getBoundingClientRect();
+                if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+                    // Swap positions in the DOM
+                    if (i < elementIndex) {
+                        parent.insertBefore(element, siblings[i]);
+                    } else {
+                        parent.insertBefore(element, siblings[i].nextSibling);
+                    }
+                    
+                    // Update elementIndex
+                    elementIndex = Array.from(parent.children).indexOf(element);
+                    break;
+                }
+            }
+        }
+        
+        function stopDrag() {
+            document.removeEventListener('mousemove', onDrag);
+            document.removeEventListener('mouseup', stopDrag);
+            
+            if (!isDragging) return;
+            
+            isDragging = false;
+            element.classList.remove('dragging');
+            element.style.position = '';
+            element.style.zIndex = '';
+            element.style.transform = '';
+            
+            // Update mediaItems array order based on new DOM order
+            const parent = element.parentNode;
+            const newOrder = Array.from(parent.children);
+            mediaItems.sort((a, b) => {
+                const aIndex = newOrder.findIndex(el => parseInt(el.dataset.id) === a.id);
+                const bIndex = newOrder.findIndex(el => parseInt(el.dataset.id) === b.id);
+                return aIndex - bIndex;
+            });
+        }
+        
+        function handleTouchEnd() {
+            document.removeEventListener('touchmove', handleTouchMove);
+            document.removeEventListener('touchend', handleTouchEnd);
+            
+            if (!isDragging) return;
+            
+            isDragging = false;
+            element.classList.remove('dragging');
+            element.style.position = '';
+            element.style.zIndex = '';
+            element.style.transform = '';
+            
+            // Update mediaItems array order based on new DOM order
+            const parent = element.parentNode;
+            const newOrder = Array.from(parent.children);
+            mediaItems.sort((a, b) => {
+                const aIndex = newOrder.findIndex(el => parseInt(el.dataset.id) === a.id);
+                const bIndex = newOrder.findIndex(el => parseInt(el.dataset.id) === b.id);
+                return aIndex - bIndex;
+            });
+        }
+    }
+    
+    // Open modal with selected item
+    function openModal(item) {
+        selectedItem = item;
+        
+        // Populate modal content
+        modalTitle.textContent = item.title;
+        modalDesc.textContent = item.desc;
+        
+        // Create media element based on type
+        modalMediaContainer.innerHTML = '';
+        if (item.type === 'video') {
+            const video = document.createElement('video');
+            video.src = item.url;
+            video.controls = true;
+            video.muted = false;
+            video.autoplay = true;
+            
+            modalMediaContainer.appendChild(video);
+        } else {
+            const img = document.createElement('img');
+            img.src = item.url;
+            img.alt = item.title;
+            
+            modalMediaContainer.appendChild(img);
+        }
+        
+        // Populate thumbnails
+        thumbnailContainer.innerHTML = '';
+        mediaItems.forEach(mediaItem => {
+            const thumb = document.createElement('div');
+            thumb.className = `thumbnail ${mediaItem.id === item.id ? 'active' : ''}`;
+            
+            if (mediaItem.type === 'video') {
+                const video = document.createElement('video');
+                video.src = mediaItem.url;
+                video.muted = true;
+                thumb.appendChild(video);
+            } else {
+                const img = document.createElement('img');
+                img.src = mediaItem.url;
+                img.alt = mediaItem.title;
+                thumb.appendChild(img);
+            }
+            
+            thumb.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openModal(mediaItem);
+            });
+            
+            thumbnailContainer.appendChild(thumb);
+        });
+        
+        // Show the modal
+        galleryModal.classList.add('active');
+    }
+    
+    // Close modal
+    function closeModal() {
+        galleryModal.classList.remove('active');
+        selectedItem = null;
+        
+        // Pause any playing videos in the modal
+        const modalVideo = modalMediaContainer.querySelector('video');
+        if (modalVideo) {
+            modalVideo.pause();
+        }
+    }
+    
+    // Make the thumbnail dock draggable
+    function makeThumbnailDockDraggable() {
+        const dock = document.getElementById('thumbnail-dock');
+        if (!dock) return;
+        
+        let isDragging = false;
+        let startX, startY, startLeft, startTop;
+        
+        dock.addEventListener('mousedown', startDrag);
+        dock.addEventListener('touchstart', handleTouchStart, { passive: false });
+        
+        function startDrag(e) {
+            if (e.target.closest('.thumbnail')) return; // Don't drag if clicking on a thumbnail
+            
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            
+            const rect = dock.getBoundingClientRect();
+            startLeft = rect.left;
+            startTop = rect.top;
+            
+            document.addEventListener('mousemove', onDrag);
+            document.addEventListener('mouseup', stopDrag);
+        }
+        
+        function handleTouchStart(e) {
+            if (e.target.closest('.thumbnail')) return;
+            e.preventDefault();
+            
+            const touch = e.touches[0];
+            isDragging = true;
+            startX = touch.clientX;
+            startY = touch.clientY;
+            
+            const rect = dock.getBoundingClientRect();
+            startLeft = rect.left;
+            startTop = rect.top;
+            
+            document.addEventListener('touchmove', handleTouchMove, { passive: false });
+            document.addEventListener('touchend', handleTouchEnd);
+        }
+        
+        function onDrag(e) {
+            if (!isDragging) return;
+            
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            
+            dock.style.left = `${startLeft + dx}px`;
+            dock.style.top = `${startTop + dy}px`;
+            dock.style.transform = 'none';
+        }
+        
+        function handleTouchMove(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            
+            const touch = e.touches[0];
+            const dx = touch.clientX - startX;
+            const dy = touch.clientY - startY;
+            
+            dock.style.left = `${startLeft + dx}px`;
+            dock.style.top = `${startTop + dy}px`;
+            dock.style.transform = 'none';
+        }
+        
+        function stopDrag() {
+            isDragging = false;
+            document.removeEventListener('mousemove', onDrag);
+            document.removeEventListener('mouseup', stopDrag);
+        }
+        
+        function handleTouchEnd() {
+            isDragging = false;
+            document.removeEventListener('touchmove', handleTouchMove);
+            document.removeEventListener('touchend', handleTouchEnd);
+        }
+    }
+    
+    // Set up event listeners
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closeModal);
+    }
+    
+    // Close modal on backdrop click
+    galleryModal.addEventListener('click', (e) => {
+        if (e.target === galleryModal) {
+            closeModal();
+        }
+    });
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && galleryModal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+    
+    // Initialize
+    populateGrid();
+    makeThumbnailDockDraggable();
 } 

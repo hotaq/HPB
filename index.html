@@ -15,7 +15,7 @@
 </head>
 <body>
     <div id="confetti-container" class="confetti-container"></div>
-    <div id="balloons-container" class="balloons-container"></div>
+    <div id="flowers-container" class="flowers-container"></div>
     
     <!-- Intro Section with Embroidery Pattern -->
     <section id="intro">
@@ -63,18 +63,18 @@
         <div id="hearts-container" class="floating-hearts"></div>
         
         <div class="z-10 relative">
-            <h1 class="text-5xl mb-4 animate-title" id="animated-title">
-                Happy Birthday <span class="birthday-text">Sweetheart</span><span class="cake-icon">🎂</span>
+            <h1 class="text-5xl mb-4 animate-title" id="animated-title" style="justify-content: center;">
+                Happy Birthday <span class="birthday-text">Aomsin</span>
             </h1>
-            <p class="text-xl mb-6 animate-subtitle">Today is all about celebrating the amazing person you are and the joy you bring to my life!</p>
+            <p class="text-xl mb-6 animate-subtitle">มาแล้วววว คนแก่ ไม่ใช่ๆ คนเก่งในสามโลก โครตโหดโครต ตึง คนงามในโลก</p>
             
-            <button id="launch-balloons" class="birthday-button mb-8">
-                Launch Birthday Balloons! 🎈
+            <button id="launch-flowers" class="birthday-button mb-8">
+                ลองกดหน่อย่า อะไรยย 🌸
             </button>
             
             <div class="flex justify-center items-center mt-4">
                 <span class="pulse-dot mr-2"></span>
-                <p class="text-sm">Scroll down to discover your gifts</p>
+                <p class="text-sm">ข้างล่างกลงงเลยย</p>
                 <span class="pulse-dot ml-2"></span>
             </div>
         </div>
@@ -109,12 +109,78 @@
             </svg>
         </div>
         
+        <!-- Add Thai-style cat illustration -->
+        <div class="cat-illustration top-left cat-float">
+            <!-- Stars around cat -->
+            <div class="star star-1"></div>
+            <div class="star star-2"></div>
+            <div class="star star-3"></div>
+            <div class="star star-4"></div>
+            
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Cat body and features -->
+                <path d="M100 150 C140 150, 160 120, 165 80 C168 60, 165 30, 140 20 C120 12, 80 12, 60 20 C35 30, 32 60, 35 80 C40 120, 60 150, 100 150Z" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+                <!-- Cat face -->
+                <ellipse cx="100" cy="95" rx="55" ry="45" fill="#e67e22" stroke="#d35400" stroke-width="1.5"/>
+                <!-- Cat ears -->
+                <path d="M60 55 C50 35, 60 25, 75 40" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+                <path d="M140 55 C150 35, 140 25, 125 40" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+                <!-- Cat eyes -->
+                <ellipse cx="80" cy="85" rx="8" ry="12" fill="#fff" stroke="#000" stroke-width="1"/>
+                <ellipse cx="120" cy="85" rx="8" ry="12" fill="#fff" stroke="#000" stroke-width="1"/>
+                <ellipse cx="80" cy="88" rx="4" ry="6" fill="#000"/>
+                <ellipse cx="120" cy="88" rx="4" ry="6" fill="#000"/>
+                <!-- Cat nose -->
+                <path d="M95 100 C100 102, 105 100, 100 105 C95 100, 90 102, 95 100" fill="#d35400" stroke="#a04000" stroke-width="1"/>
+                <!-- Cat mouth -->
+                <path d="M85 110 C95 115, 105 115, 115 110" fill="none" stroke="#a04000" stroke-width="1.5" stroke-linecap="round"/>
+                <!-- Cat whiskers -->
+                <line x1="60" y1="100" x2="85" y2="105" stroke="#a04000" stroke-width="1"/>
+                <line x1="60" y1="105" x2="85" y2="107" stroke="#a04000" stroke-width="1"/>
+                <line x1="60" y1="110" x2="85" y2="110" stroke="#a04000" stroke-width="1"/>
+                <line x1="140" y1="100" x2="115" y2="105" stroke="#a04000" stroke-width="1"/>
+                <line x1="140" y1="105" x2="115" y2="107" stroke="#a04000" stroke-width="1"/>
+                <line x1="140" y1="110" x2="115" y2="110" stroke="#a04000" stroke-width="1"/>
+                <!-- Police/mailman hat like in Thai book -->
+                <path d="M70 60 C90 40, 110 40, 130 60 C120 45, 90 40, 70 60" fill="#4a69bd" stroke="#1e3799" stroke-width="2"/>
+                <path d="M70 60 C90 50, 110 50, 130 60 C120 65, 80 65, 70 60" fill="#4a69bd" stroke="#1e3799" stroke-width="2"/>
+                <ellipse cx="100" cy="52" rx="15" ry="8" fill="#fbc531" stroke="#e1b12c" stroke-width="1"/>
+            </svg>
+        </div>
+        
         <div class="max-w-5xl mx-auto text-center" data-aos="fade-up">
-            <h2 class="text-3xl mb-8">Our Love Journey 🎁</h2>
-            <div class="box-container">
-                <span class="clickable-box" id="reveal-photos" data-target="photo-container">Click to reveal our special moments</span>
-                <div class="photo-reveal" id="photo-container">
-                    <div class="photo-grid"></div>
+            <!-- Photo Box - removed title and changed clickable box text -->
+            
+            
+            <!-- Bento Gallery moved here -->
+            <h3 class="text-5xl mb-4">Gallery Shots Collection</h3>
+            <p class="mb-8">Drag and explore our curated collection of shots</p>
+            
+            <div class="container mx-auto px-4 py-8 max-w-4xl">
+                <!-- Bento Grid Gallery -->
+                <div id="bento-grid" class="bento-grid">
+                    <!-- Media items will be added by JavaScript -->
+                </div>
+                
+                <!-- Gallery Modal -->
+                <div id="gallery-modal" class="gallery-modal">
+                    <div class="modal-content">
+                        <div class="modal-media-container">
+                            <!-- Modal content will be injected by JavaScript -->
+                        </div>
+                        <div class="modal-caption">
+                            <h3 class="modal-title"></h3>
+                            <p class="modal-desc"></p>
+                        </div>
+                        <button id="modal-close" class="modal-close-btn">×</button>
+                    </div>
+                    
+                    <!-- Thumbnail Dock -->
+                    <div id="thumbnail-dock" class="thumbnail-dock">
+                        <div class="thumbnail-container">
+                            <!-- Thumbnails will be added by JavaScript -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -124,8 +190,8 @@
     <section id="game" class="py-20 px-5 bg-gradient-to-r from-primary-light/30 to-accent/20">
         <div class="stitch-detail"></div>
         <div class="max-w-5xl mx-auto text-center" data-aos="fade-up">
-            <h2 class="text-3xl mb-8">Birthday Memory Game 🎮</h2>
-            <p class="mb-10">Find all matching pairs to unlock a birthday surprise</p>
+            <h2 class="text-3xl mb-8">Birthday Gifts Memory Game 🎁</h2>
+            <p class="mb-10">Find all matching gift pairs to see what I'm giving you for your birthday!</p>
             <div class="memory-game"></div>
         </div>
     </section>
@@ -156,6 +222,48 @@
                 <path class="flower-detail" d="M50 35 C55 40, 60 45, 50 50 C40 45, 45 40, 50 35"></path>
                 <path class="flower-detail" d="M50 65 C55 60, 60 55, 50 50 C40 55, 45 60, 50 65"></path>
                 <path class="flower-detail" d="M35 50 C40 55, 45 60, 50 50 C55 40, 60 45, 65 50"></path>
+            </svg>
+        </div>
+        
+        <!-- Add Thai-style cat illustration -->
+        <div class="cat-illustration bottom-right cat-float">
+            <!-- Stars around cat -->
+            <div class="star star-1"></div>
+            <div class="star star-2"></div>
+            <div class="star star-3"></div>
+            <div class="star star-4"></div>
+            
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Cat body and features -->
+                <path d="M100 150 C140 150, 160 120, 165 80 C168 60, 165 30, 140 20 C120 12, 80 12, 60 20 C35 30, 32 60, 35 80 C40 120, 60 150, 100 150Z" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+                <!-- Cat face -->
+                <ellipse cx="100" cy="95" rx="55" ry="45" fill="#e67e22" stroke="#d35400" stroke-width="1.5"/>
+                <!-- Cat ears -->
+                <path d="M60 55 C50 35, 60 25, 75 40" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+                <path d="M140 55 C150 35, 140 25, 125 40" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+                <!-- Cat eyes -->
+                <ellipse cx="80" cy="85" rx="8" ry="12" fill="#fff" stroke="#000" stroke-width="1"/>
+                <ellipse cx="120" cy="85" rx="8" ry="12" fill="#fff" stroke="#000" stroke-width="1"/>
+                <ellipse cx="80" cy="88" rx="4" ry="6" fill="#000"/>
+                <ellipse cx="120" cy="88" rx="4" ry="6" fill="#000"/>
+                <!-- Cat nose -->
+                <path d="M95 100 C100 102, 105 100, 100 105 C95 100, 90 102, 95 100" fill="#d35400" stroke="#a04000" stroke-width="1"/>
+                <!-- Cat mouth -->
+                <path d="M85 110 C95 115, 105 115, 115 110" fill="none" stroke="#a04000" stroke-width="1.5" stroke-linecap="round"/>
+                <!-- Cat whiskers -->
+                <line x1="60" y1="100" x2="85" y2="105" stroke="#a04000" stroke-width="1"/>
+                <line x1="60" y1="105" x2="85" y2="107" stroke="#a04000" stroke-width="1"/>
+                <line x1="60" y1="110" x2="85" y2="110" stroke="#a04000" stroke-width="1"/>
+                <line x1="140" y1="100" x2="115" y2="105" stroke="#a04000" stroke-width="1"/>
+                <line x1="140" y1="105" x2="115" y2="107" stroke="#a04000" stroke-width="1"/>
+                <line x1="140" y1="110" x2="115" y2="110" stroke="#a04000" stroke-width="1"/>
+                <!-- Mail envelope/letter like in Thai book -->
+                <rect x="70" y="130" width="60" height="40" rx="5" fill="#ffffff" stroke="#333" stroke-width="1"/>
+                <path d="M70 135 L100 150 L130 135" fill="none" stroke="#333" stroke-width="1"/>
+                <line x1="70" y1="165" x2="90" y2="150" stroke="#333" stroke-width="1"/>
+                <line x1="130" y1="165" x2="110" y2="150" stroke="#333" stroke-width="1"/>
+                <!-- Small heart on envelope -->
+                <path d="M100 145 C102 143, 105 143, 107 145 C109 147, 109 150, 107 152 L100 158 L93 152 C91 150, 91 147, 93 145 C95 143, 98 143, 100 145Z" fill="#e54c7c" stroke="#b22222" stroke-width="0.5"/>
             </svg>
         </div>
         
