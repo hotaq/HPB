@@ -576,8 +576,8 @@ function initMemoryGame() {
         const congratsDiv = document.createElement('div');
         congratsDiv.className = 'congrats-message';
         congratsDiv.innerHTML = `
-            <h3>Congratulations! 🎉</h3>
-            <p>You've found all the matching birthday gifts! These are just a few of the special things I want to give to you on your birthday.</p>
+            <h3>เก่งเกินไปลละะ</h3>
+            <p>ของขวัญเอาเป็น pandas ละกันเนาะแต่ได้ตอนไหนนั้นรอดูอนาคตเนาะ</p>
             <button class="play-again">Play Again</button>
         `;
         

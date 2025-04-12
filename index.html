@@ -10,20 +10,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@100;200;300;400;500;600;700&display=swap');
+    </style>
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="confetti-container" class="confetti-container"></div>
     <div id="flowers-container" class="flowers-container"></div>
-    
+
     <!-- Intro Section with Embroidery Pattern -->
     <section id="intro">
         <!-- Add embroidery styling elements -->
         <div class="embroidery-pattern"></div>
         <div class="texture-overlay"></div>
         <div class="stitch-detail"></div>
-        
+
         <!-- Add flower-like embroidery cells -->
         <div class="flower-cell top-right">
             <svg viewBox="0 0 100 100">
@@ -34,7 +37,7 @@
                 <path class="flower-detail" d="M35 50 C40 55, 45 60, 50 50 C55 40, 60 45, 65 50"></path>
             </svg>
         </div>
-        
+
         <div class="flower-cell bottom-left">
             <svg viewBox="0 0 100 100">
                 <path class="flower-petal" d="M50 10 C65 25, 75 35, 90 50 C75 65, 65 75, 50 90 C35 75, 25 65, 10 50 C25 35, 35 25, 50 10Z"></path>
@@ -47,7 +50,7 @@
                 <path class="flower-stem" d="M50 90 C48 110, 60 120, 65 130"></path>
             </svg>
         </div>
-        
+
         <div class="embroidery-leaf left">
             <svg viewBox="0 0 100 50">
                 <path class="leaf-main" d="M10 25 C30 0, 70 0, 90 25 C70 50, 30 50, 10 25Z"></path>
@@ -56,36 +59,37 @@
                 <path class="leaf-vein" d="M50 10 C40 15, 30 20, 20 25"></path>
             </svg>
         </div>
-        
+
         <div class="elegant-shapes"></div>
         <div class="birthday-gradient"></div>
         <div class="birthday-number">❤️</div>
         <div id="hearts-container" class="floating-hearts"></div>
-        
+
         <div class="z-10 relative">
             <h1 class="text-5xl mb-4 animate-title" id="animated-title" style="justify-content: center;">
                 Happy Birthday <span class="birthday-text">Aomsin</span>
             </h1>
             <p class="text-xl mb-6 animate-subtitle">มาแล้วววว คนแก่ ไม่ใช่ๆ คนเก่งในสามโลก โครตโหดโครต ตึง คนงามในโลก</p>
-            
+
             <button id="launch-flowers" class="birthday-button mb-8">
-                ลองกดหน่อย่า อะไรยย 🌸
+                ลองกดดูหน่อยยย 🌸
             </button>
-            
+
             <div class="flex justify-center items-center mt-4">
                 <span class="pulse-dot mr-2"></span>
-                <p class="text-sm">ข้างล่างกลงงเลยย</p>
+                <p class="text-sm">ข้างล่างยังมีอีกกนะะ
+                </p>
                 <span class="pulse-dot ml-2"></span>
             </div>
         </div>
-        
+
         <div class="scroll-indicator">
             <div class="chevron"></div>
             <div class="chevron"></div>
             <div class="chevron"></div>
         </div>
     </section>
-    
+
     <!-- Photo Box Section with Embroidery Border -->
     <section id="photo-box" class="py-20 px-5 embroidery-border bg-embroidery">
         <!-- Add flower cell to this section too -->
@@ -99,7 +103,7 @@
                 <path class="flower-detail" d="M70 70 C60 60, 55 55, 50 50 C55 55, 60 60, 70 70"></path>
             </svg>
         </div>
-        
+
         <div class="embroidery-leaf right">
             <svg viewBox="0 0 100 50">
                 <path class="leaf-main" d="M10 25 C30 0, 70 0, 90 25 C70 50, 30 50, 10 25Z"></path>
@@ -108,7 +112,7 @@
                 <path class="leaf-vein" d="M50 10 C40 15, 30 20, 20 25"></path>
             </svg>
         </div>
-        
+
         <!-- Add Thai-style cat illustration -->
         <div class="cat-illustration top-left cat-float">
             <!-- Stars around cat -->
@@ -116,7 +120,7 @@
             <div class="star star-2"></div>
             <div class="star star-3"></div>
             <div class="star star-4"></div>
-            
+
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                 <!-- Cat body and features -->
                 <path d="M100 150 C140 150, 160 120, 165 80 C168 60, 165 30, 140 20 C120 12, 80 12, 60 20 C35 30, 32 60, 35 80 C40 120, 60 150, 100 150Z" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
@@ -147,21 +151,21 @@
                 <ellipse cx="100" cy="52" rx="15" ry="8" fill="#fbc531" stroke="#e1b12c" stroke-width="1"/>
             </svg>
         </div>
-        
+
         <div class="max-w-5xl mx-auto text-center" data-aos="fade-up">
             <!-- Photo Box - removed title and changed clickable box text -->
-            
-            
+
+
             <!-- Bento Gallery moved here -->
             <h3 class="text-5xl mb-4">Gallery Shots Collection</h3>
-            <p class="mb-8">Drag and explore our curated collection of shots</p>
-            
+            <p class="mb-8">ลองกดดูหน่อยยยนะะ
+
             <div class="container mx-auto px-4 py-8 max-w-4xl">
                 <!-- Bento Grid Gallery -->
                 <div id="bento-grid" class="bento-grid">
                     <!-- Media items will be added by JavaScript -->
                 </div>
-                
+
                 <!-- Gallery Modal -->
                 <div id="gallery-modal" class="gallery-modal">
                     <div class="modal-content">
@@ -174,7 +178,7 @@
                         </div>
                         <button id="modal-close" class="modal-close-btn">×</button>
                     </div>
-                    
+
                     <!-- Thumbnail Dock -->
                     <div id="thumbnail-dock" class="thumbnail-dock">
                         <div class="thumbnail-container">
@@ -185,17 +189,17 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Game Section -->
     <section id="game" class="py-20 px-5 bg-gradient-to-r from-primary-light/30 to-accent/20">
         <div class="stitch-detail"></div>
         <div class="max-w-5xl mx-auto text-center" data-aos="fade-up">
             <h2 class="text-3xl mb-8">Birthday Gifts Memory Game 🎁</h2>
-            <p class="mb-10">Find all matching gift pairs to see what I'm giving you for your birthday!</p>
+            <p class="mb-10">จับคู่ของขวัญให้ครบทุกคู่ แล้วมาดูกันว่าของขวัญวันเกิดที่ฉันเตรียมไว้ให้คืออะไร!</p>
             <div class="memory-game"></div>
         </div>
     </section>
-    
+
     <!-- Photo Slider Section with Embroidery Border -->
     <section id="photo-slider" class="py-20 px-5 embroidery-border bg-embroidery">
         <div class="max-w-5xl mx-auto text-center" data-aos="fade-up">
@@ -208,12 +212,12 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Letter Section -->
     <section id="letter" class="py-20 px-5 bg-gradient-to-r from-primary-light/30 to-accent/20">
         <div class="texture-overlay"></div>
         <div class="stitch-detail"></div>
-        
+
         <!-- Add another flower cell -->
         <div class="flower-cell bottom-left" style="bottom: 10%; left: 15%; transform: rotate(5deg) scale(0.9);">
             <svg viewBox="0 0 100 100">
@@ -224,7 +228,7 @@
                 <path class="flower-detail" d="M35 50 C40 55, 45 60, 50 50 C55 40, 60 45, 65 50"></path>
             </svg>
         </div>
-        
+
         <!-- Add Thai-style cat illustration -->
         <div class="cat-illustration bottom-right cat-float">
             <!-- Stars around cat -->
@@ -232,7 +236,7 @@
             <div class="star star-2"></div>
             <div class="star star-3"></div>
             <div class="star star-4"></div>
-            
+
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                 <!-- Cat body and features -->
                 <path d="M100 150 C140 150, 160 120, 165 80 C168 60, 165 30, 140 20 C120 12, 80 12, 60 20 C35 30, 32 60, 35 80 C40 120, 60 150, 100 150Z" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
@@ -266,7 +270,7 @@
                 <path d="M100 145 C102 143, 105 143, 107 145 C109 147, 109 150, 107 152 L100 158 L93 152 C91 150, 91 147, 93 145 C95 143, 98 143, 100 145Z" fill="#e54c7c" stroke="#b22222" stroke-width="0.5"/>
             </svg>
         </div>
-        
+
         <div class="max-w-5xl mx-auto text-center" data-aos="fade-up">
             <h2 class="text-3xl mb-8">Birthday Wishes From My Heart 💌</h2>
             <button class="letter-button" id="show-letter">Open My Birthday Letter</button>
@@ -275,13 +279,13 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Footer -->
     <footer class="py-10 px-5 text-center bg-primary text-white">
         <p>Made with ❤️ for your special day 🎉</p>
     </footer>
-    
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
-</html> 
+</html>
