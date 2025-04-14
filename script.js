@@ -968,6 +968,12 @@ function initMusicPlayer() {
             artist: 'LANDOKMAI',
             cover: 'imagesong/maxresdefault.jpg',
             file: 'song/LANDOKMAI - เพลงรกเพลงแรก (Blooming) [Official MV].mp3'
+        },
+        {
+            title: 'JVKE - her',
+            artist: 'JVKE ',
+            cover: 'imagesong/jkver.jpg',
+            file: 'song/JVKE - her (official lyric video).mp3'
         }
     ];
 
