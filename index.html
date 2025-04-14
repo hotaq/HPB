@@ -100,6 +100,11 @@
                 <path class="flower-petal" d="M50 20 C60 10, 80 10, 90 30 C100 50, 90 70, 80 80 C60 90, 40 90, 20 80 C10 70, 0 50, 10 30 C20 10, 40 10, 50 20Z"></path>
                 <circle class="flower-center" cx="50" cy="50" r="15"></circle>
                 <path class="flower-detail" d="M30 30 C40 40, 45 45, 50 50 C45 45, 40 40, 30 30"></path>
+                <path class="flower-detail" d="M30 30 C40 40, 45 45, 50 50 C45 45, 40 40, 30 30"></path>
+                <path class="flower-detail" d="M30 30 C40 40, 45 45, 50 50 C45 45, 40 40, 30 30"></path>
+                <path class="flower-detail" d="M30 30 C40 40, 45 45, 50 50 C45 45, 40 40, 30 30"></path>
+                <path class="flower-detail" d="M30 30 C40 40, 45 45, 50 50 C45 45, 40 40, 30 30"></path>
+                <path class="flower-detail" d="M30 30 C40 40, 45 45, 50 50 C45 45, 40 40, 30 30"></path>
                 <path class="flower-detail" d="M70 30 C60 40, 55 45, 50 50 C55 45, 60 40, 70 30"></path>
                 <path class="flower-detail" d="M30 70 C40 60, 45 55, 50 50 C45 55, 40 60, 30 70"></path>
                 <path class="flower-detail" d="M70 70 C60 60, 55 55, 50 50 C55 55, 60 60, 70 70"></path>
@@ -109,6 +114,12 @@
         <div class="embroidery-leaf right">
             <svg viewBox="0 0 100 50">
                 <path class="leaf-main" d="M10 25 C30 0, 70 0, 90 25 C70 50, 30 50, 10 25Z"></path>
+                <path class="leaf-main" d="M10 25 C30 0, 70 0, 90 25 C70 50, 30 50, 10 25Z"></path>
+                <path class="leaf-main" d="M10 25 C30 0, 70 0, 90 25 C70 50, 30 50, 10 25Z"></path>
+                <path class="leaf-main" d="M10 25 C30 0, 70 0, 90 25 C70 50, 30 50, 10 25Z"></path>
+                <path class="leaf-vein" d="M50 0 C50 10, 50 15, 50 50"></path>
+                <path class="leaf-vein" d="M50 0 C50 10, 50 15, 50 50"></path>
+                <path class="leaf-vein" d="M50 0 C50 10, 50 15, 50 50"></path>
                 <path class="leaf-vein" d="M50 0 C50 10, 50 15, 50 50"></path>
                 <path class="leaf-vein" d="M50 10 C60 15, 70 20, 80 25"></path>
                 <path class="leaf-vein" d="M50 10 C40 15, 30 20, 20 25"></path>
@@ -281,6 +292,60 @@
             </div>
         </div>
     </section>
+
+    <!-- Floating Music Player -->
+    <div id="music-player" class="floating-music-player">
+        <div class="music-card">
+            <div class="music-card-inner">
+                <div class="music-cover">
+                    <img id="music-cover-img" src="image song/maxresdefault.jpg" alt="Album Cover">
+                </div>
+                <div class="music-info">
+                    <h3 id="music-title" class="music-title">เพลงรักเพลงแรก</h3>
+                    <p id="music-artist" class="music-artist">LANDOKMAI</p>
+                </div>
+                <div class="music-progress">
+                    <div class="progress-bar">
+                        <div id="progress" class="progress"></div>
+                    </div>
+                    <div class="time-info">
+                        <span id="current-time">0:00</span>
+                        <span id="duration">0:00</span>
+                    </div>
+                </div>
+                <div class="music-controls">
+                    <button id="prev-btn" class="control-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+                    </button>
+                    <button id="play-btn" class="control-btn play-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+                    </button>
+                    <button id="next-btn" class="control-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                    </button>
+                    <button id="stop-btn" class="control-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M6 6h12v12H6z"/></svg>
+                    </button>
+                </div>
+                <div class="volume-control">
+                    <button id="mute-btn" class="volume-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                    </button>
+                    <input type="range" id="volume-slider" min="0" max="100" value="70" class="volume-slider">
+                </div>
+                <button id="minimize-player" class="minimize-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 13H5v-2h14v2z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Minimized Music Player -->
+    <div id="mini-player" class="mini-music-player hidden">
+        <div class="mini-player-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="py-10 px-5 text-center bg-primary text-white">

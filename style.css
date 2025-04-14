@@ -2265,5 +2265,345 @@ html, body {
 .bg-gradient-title {
     background: linear-gradient(135deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
+}
+
+/* Floating Music Player Styles */
+.floating-music-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    max-width: 300px;
+    transition: all 0.3s ease;
+    transform-origin: bottom left;
+}
+
+.music-card {
+    background-color: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.music-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.music-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    z-index: 1;
+}
+
+.music-card-inner {
+    padding: 15px;
+    position: relative;
+}
+
+.minimize-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-light);
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    z-index: 2;
+}
+
+.minimize-btn:hover {
+    opacity: 1;
+}
+
+.music-cover {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.music-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.music-cover:hover img {
+    transform: scale(1.05);
+}
+
+.music-info {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.music-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+
+.music-artist {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin: 0;
+}
+
+.music-progress {
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 6px;
+    cursor: pointer;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    width: 0%;
+    border-radius: 3px;
+    transition: width 0.1s linear;
+}
+
+.time-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--text-light);
+}
+
+.music-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.control-btn:hover {
+    color: var(--primary);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.play-btn {
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(216, 112, 147, 0.3);
+}
+
+.play-btn:hover {
+    background-color: var(--primary-dark);
+    color: white;
+    transform: scale(1.05);
+}
+
+.play-btn.pause svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Volume control styles */
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.volume-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.volume-btn:hover {
+    color: var(--primary);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.volume-btn.muted svg path {
+    d: path('M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z');
+}
+
+.volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+}
+
+.volume-slider:hover::-webkit-slider-thumb {
+    transform: scale(1.2);
+    background: var(--primary-dark);
+}
+
+.volume-slider:hover::-moz-range-thumb {
+    transform: scale(1.2);
+    background: var(--primary-dark);
+}
+
+/* Mini Player Styles */
+.mini-music-player {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(216, 112, 147, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mini-music-player:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(216, 112, 147, 0.4);
+}
+
+.mini-player-icon {
+    color: white;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Attention animation for music player */
+.floating-music-player.attention {
+    animation: attention 1s ease-in-out;
+}
+
+@keyframes attention {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(216, 112, 147, 0.5);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive styles for music player */
+@media (max-width: 480px) {
+    .floating-music-player {
+        max-width: 250px;
+        bottom: 15px;
+        left: 15px;
+    }
+
+    .music-cover {
+        width: 100px;
+        height: 100px;
+    }
+
+    .music-title {
+        font-size: 1rem;
+    }
+
+    .music-artist {
+        font-size: 0.8rem;
+    }
+
+    .control-btn {
+        padding: 6px;
+    }
+
+    .play-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .play-btn svg {
+        width: 24px;
+        height: 24px;
+    }
 }

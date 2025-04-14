@@ -49,6 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize the bento gallery
     initBentoGallery();
 
+    // Initialize the music player
+    initMusicPlayer();
+
     // Add swipe functionality for touch devices
     addSwipeSupport();
 
@@ -916,6 +919,296 @@ function initPhotoSlider() {
 
     // Clean up autoplay when leaving page
     window.addEventListener('beforeunload', stopAutoplay);
+}
+
+// ------- MUSIC PLAYER SECTION --------
+function initMusicPlayer() {
+    // Get DOM elements
+    const musicPlayer = document.getElementById('music-player');
+    const miniPlayer = document.getElementById('mini-player');
+    const minimizeBtn = document.getElementById('minimize-player');
+    const musicCoverImg = document.getElementById('music-cover-img');
+    const musicTitle = document.getElementById('music-title');
+    const musicArtist = document.getElementById('music-artist');
+    const progressBar = document.getElementById('progress');
+    const currentTimeEl = document.getElementById('current-time');
+    const durationEl = document.getElementById('duration');
+    const prevBtn = document.getElementById('prev-btn');
+    const playBtn = document.getElementById('play-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const stopBtn = document.getElementById('stop-btn');
+    const muteBtn = document.getElementById('mute-btn');
+    const volumeSlider = document.getElementById('volume-slider');
+
+    // Create audio element
+    const audio = new Audio();
+
+    // Song data - using the correct song folder path based on the directory listing
+    const songs = [
+        {
+            title: 'From The Start',
+            artist: 'Laufey',
+            cover: 'imagesong/fromthe start.jpg',
+            file: 'song/Laufey - From The Start (Official Music Video).mp3'
+        },
+        {
+            title: 'Falling Behind',
+            artist: 'Laufey',
+            cover: 'imagesong/falenn.jpg',
+            file: 'song/Laufey - Falling Behind (Official Audio).mp3'
+        },
+        {
+            title: 'Laufey - Valentine ',
+            artist: 'Laufey',
+            cover: 'imagesong/Laufey_Valentine_single_cover.jpeg',
+            file: 'song/Laufey - Valentine (Official Audio).mp3'
+        },
+        {
+            title: 'เพลงรักเพลงแรก (Blooming)',
+            artist: 'LANDOKMAI',
+            cover: 'imagesong/maxresdefault.jpg',
+            file: 'song/LANDOKMAI - เพลงรกเพลงแรก (Blooming) [Official MV].mp3'
+        }
+    ];
+
+    // Current song index
+    let currentSongIndex = 0;
+    let isPlaying = false;
+    let autoplayAttempted = false;
+    let isMuted = false;
+    let lastVolume = 0.7; // Default volume (70%)
+
+    // Initialize player
+    function loadSong(index) {
+        const song = songs[index];
+        musicTitle.textContent = song.title;
+        musicArtist.textContent = song.artist;
+        musicCoverImg.src = song.cover;
+
+        // Store the current time if we're switching songs while playing
+        const wasPlaying = isPlaying;
+        if (isPlaying) {
+            pauseSong();
+        }
+
+        // Set the new source
+        audio.src = song.file;
+        audio.load();
+
+        // Resume playing if we were playing before
+        if (wasPlaying) {
+            playSong();
+        }
+    }
+
+    // Format time in minutes and seconds
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    // Update progress bar
+    function updateProgress() {
+        if (audio.duration) {
+            const progressPercent = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        }
+    }
+
+    // Set progress bar on click
+    function setProgress(e) {
+        const progressBarContainer = document.querySelector('.progress-bar');
+        const width = progressBarContainer.clientWidth;
+        const clickX = e.offsetX;
+        const duration = audio.duration;
+
+        audio.currentTime = (clickX / width) * duration;
+    }
+
+    // Play/pause song
+    function togglePlay() {
+        if (isPlaying) {
+            pauseSong();
+        } else {
+            playSong();
+        }
+    }
+
+    // Play song
+    function playSong() {
+        isPlaying = true;
+
+        // Change play button to pause
+        playBtn.classList.add('pause');
+        playBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+
+        // Start playing
+        const playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.warn('Could not play audio:', error);
+                // Fallback for mobile devices that require user interaction
+                isPlaying = false;
+                playBtn.classList.remove('pause');
+                playBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>';
+
+                // Show a notification or visual cue that user needs to interact
+                if (!autoplayAttempted) {
+                    // Flash the player to draw attention
+                    musicPlayer.classList.add('attention');
+                    setTimeout(() => {
+                        musicPlayer.classList.remove('attention');
+                    }, 2000);
+                    autoplayAttempted = true;
+                }
+            });
+        }
+    }
+
+    // Pause song
+    function pauseSong() {
+        isPlaying = false;
+
+        // Change pause button to play
+        playBtn.classList.remove('pause');
+        playBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>';
+
+        // Pause playing
+        audio.pause();
+    }
+
+    // Previous song
+    function prevSong() {
+        currentSongIndex--;
+        if (currentSongIndex < 0) {
+            currentSongIndex = songs.length - 1;
+        }
+        loadSong(currentSongIndex);
+        if (isPlaying) {
+            playSong();
+        }
+    }
+
+    // Next song
+    function nextSong() {
+        currentSongIndex++;
+        if (currentSongIndex >= songs.length) {
+            currentSongIndex = 0;
+        }
+        loadSong(currentSongIndex);
+        if (isPlaying) {
+            playSong();
+        }
+    }
+
+    // Minimize player
+    function minimizePlayer() {
+        musicPlayer.classList.add('hidden');
+        miniPlayer.classList.remove('hidden');
+    }
+
+    // Maximize player
+    function maximizePlayer() {
+        miniPlayer.classList.add('hidden');
+        musicPlayer.classList.remove('hidden');
+    }
+
+    // Stop song completely
+    function stopSong() {
+        pauseSong();
+        audio.currentTime = 0;
+        progressBar.style.width = '0%';
+        currentTimeEl.textContent = '0:00';
+    }
+
+    // Toggle mute
+    function toggleMute() {
+        if (isMuted) {
+            // Unmute
+            audio.volume = lastVolume;
+            isMuted = false;
+            muteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
+            muteBtn.classList.remove('muted');
+        } else {
+            // Mute
+            lastVolume = audio.volume;
+            audio.volume = 0;
+            isMuted = true;
+            muteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>';
+            muteBtn.classList.add('muted');
+        }
+    }
+
+    // Set volume
+    function setVolume() {
+        const volume = volumeSlider.value / 100;
+        audio.volume = volume;
+        lastVolume = volume;
+
+        // Update mute button state
+        if (volume === 0) {
+            isMuted = true;
+            muteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>';
+            muteBtn.classList.add('muted');
+        } else if (isMuted) {
+            isMuted = false;
+            muteBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
+            muteBtn.classList.remove('muted');
+        }
+    }
+
+    // Event listeners
+    playBtn.addEventListener('click', togglePlay);
+    prevBtn.addEventListener('click', prevSong);
+    nextBtn.addEventListener('click', nextSong);
+    stopBtn.addEventListener('click', stopSong);
+    muteBtn.addEventListener('click', toggleMute);
+    volumeSlider.addEventListener('input', setVolume);
+    minimizeBtn.addEventListener('click', minimizePlayer);
+    miniPlayer.addEventListener('click', maximizePlayer);
+
+    // Update progress bar as song plays
+    audio.addEventListener('timeupdate', updateProgress);
+
+    // When song ends, play next song
+    audio.addEventListener('ended', nextSong);
+
+    // Click on progress bar to seek
+    document.querySelector('.progress-bar').addEventListener('click', setProgress);
+
+    // When duration is available, update duration display
+    audio.addEventListener('loadedmetadata', () => {
+        durationEl.textContent = formatTime(audio.duration);
+    });
+
+    // Set initial volume
+    audio.volume = lastVolume;
+
+    // Load first song
+    loadSong(currentSongIndex);
+
+    // Try to autoplay when page loads
+    // We need to wait for user interaction due to browser autoplay policies
+    const attemptAutoplay = () => {
+        playSong();
+        // Remove the event listeners after first interaction
+        document.removeEventListener('click', attemptAutoplay);
+        document.removeEventListener('touchstart', attemptAutoplay);
+    };
+
+    // Listen for any user interaction to start playing
+    document.addEventListener('click', attemptAutoplay, { once: true });
+    document.addEventListener('touchstart', attemptAutoplay, { once: true });
+
+    // Also try immediate autoplay (might work in some browsers)
+    setTimeout(() => {
+        if (!isPlaying) {
+            playSong();
+        }
+    }, 1000);
 }
 
 // ------- LETTER REVEAL SECTION --------
