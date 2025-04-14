@@ -406,6 +406,7 @@ section {
     perspective: 1000px;
     max-width: 600px;
     margin: 0 auto;
+    touch-action: manipulation; /* Improve touch behavior */
 }
 
 .memory-card {
@@ -417,6 +418,9 @@ section {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent; /* Fix for iOS */
+    touch-action: manipulation; /* Improve touch behavior */
+    user-select: none; /* Prevent text selection */
 }
 
 .memory-card:active {
@@ -615,12 +619,19 @@ section {
     position: relative;
     z-index: 10;
     box-shadow: 0 10px 25px rgba(216, 112, 147, 0.3);
+    -webkit-tap-highlight-color: transparent; /* Fix for iOS */
+    touch-action: manipulation; /* Improve touch behavior */
 }
 
 .letter-button:hover {
     background-color: var(--primary-dark);
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(216, 112, 147, 0.4);
+}
+
+.letter-button:active {
+    background-color: var(--primary-dark);
+    transform: translateY(2px);
 }
 
 .letter-content {
@@ -636,6 +647,7 @@ section {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
+    z-index: 20; /* Ensure it's above other elements */
 }
 
 .letter-content::before {
@@ -920,8 +932,19 @@ section {
     }
 
     .memory-game {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 280px;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 8px;
+        max-width: 320px;
+    }
+
+    /* Make memory cards smaller but still playable on mobile */
+    .memory-card {
+        height: 70px;
+    }
+
+    .front-face, .back-face {
+        font-size: 24px;
+        padding: 5px;
     }
 
     .slider-item {
@@ -1428,6 +1451,7 @@ html, body {
     .memory-card {
         cursor: pointer;
         -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
     }
 
     /* Fix iOS Safari 100vh issue */
@@ -1451,6 +1475,29 @@ html, body {
     .slider-nav {
         min-height: 44px;
         min-width: 44px;
+    }
+
+    /* Fix iOS-specific issues */
+    .letter-content {
+        -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS */
+    }
+
+    /* Prevent unwanted double-tap zooming */
+    * {
+        touch-action: manipulation;
+    }
+
+    /* Fix iOS scrolling issues */
+    body {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: hidden;
+        position: relative;
+        width: 100%;
+    }
+
+    /* Improve iOS button behavior */
+    button:active {
+        opacity: 0.8;
     }
 }
 

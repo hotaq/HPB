@@ -361,7 +361,42 @@ function initBalloons(isMobile = false) {
 
 // ------- SMOOTH SCROLLING --------
 function initSmoothScroll() {
-    if (window.Lenis) {
+    // Check if device is iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+    // Use native smooth scrolling for iOS devices
+    if (isIOS) {
+        // Add header links scroll with native behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Use native smooth scrolling
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Handle scroll indicator with native behavior
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        if (scrollIndicator) {
+            scrollIndicator.addEventListener('click', () => {
+                const photoSection = document.getElementById('photo-box');
+                if (photoSection) {
+                    photoSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        }
+    } else if (window.Lenis) {
+        // Use Lenis for non-iOS devices
         const lenis = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -392,21 +427,39 @@ function initSmoothScroll() {
                 }
             });
         });
-    }
 
-    // Fallback for devices without Lenis
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    if (scrollIndicator) {
-        scrollIndicator.addEventListener('click', () => {
-            const photoSection = document.getElementById('photo-box');
-            if (photoSection) {
-                if (window.Lenis) {
+        // Handle scroll indicator
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        if (scrollIndicator) {
+            scrollIndicator.addEventListener('click', () => {
+                const photoSection = document.getElementById('photo-box');
+                if (photoSection) {
                     lenis.scrollTo(photoSection);
-                } else {
+                }
+            });
+        }
+    } else {
+        // Fallback for devices without Lenis
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        if (scrollIndicator) {
+            scrollIndicator.addEventListener('click', () => {
+                const photoSection = document.getElementById('photo-box');
+                if (photoSection) {
                     photoSection.scrollIntoView({ behavior: 'smooth' });
                 }
-            }
-        });
+            });
+        }
     }
 }
 
@@ -886,47 +939,64 @@ function initLetterReveal() {
         <p>Let's stay together for a long time. Don't be too stubborn, okay? Or I'll have to tell you off!"
 </p>
 
-        
+
 
         <p class="signature">Forever and always yours, ❤️</p>
     `;
 
-    // Click event to reveal letter with both click and touch
-    ['click', 'touchend'].forEach(eventType => {
-        letterButton.addEventListener(eventType, () => {
-            if (letterContent.style.display === 'block') {
-                letterContent.style.display = 'none';
-                letterButton.textContent = 'Open My Birthday Letter';
-            } else {
-                // Show the letter container
-                letterContent.style.display = 'block';
-                letterButton.textContent = 'Close Letter';
+    // Check if device is iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-                // Get letter text container
-                const letterTextDiv = letterContent.querySelector('.letter-text');
-                if (!letterTextDiv) return;
+    // Function to toggle letter visibility
+    function toggleLetter(e) {
+        // Prevent default behavior
+        if (e) e.preventDefault();
 
-                // Set letter content
-                letterTextDiv.innerHTML = letterHtml;
+        if (letterContent.style.display === 'block') {
+            // Close letter
+            letterContent.style.display = 'none';
+            letterButton.textContent = 'Open My Birthday Letter';
+        } else {
+            // Show the letter container
+            letterContent.style.display = 'block';
+            letterButton.textContent = 'Close Letter';
 
-                // Animate paragraphs with staggered delay
-                const paragraphs = letterTextDiv.querySelectorAll('p');
-                paragraphs.forEach((paragraph, index) => {
-                    setTimeout(() => {
-                        paragraph.style.opacity = '1';
-                        paragraph.style.transform = 'translateY(0)';
-                    }, 300 * index); // Stagger by 300ms per paragraph
-                });
+            // Get letter text container
+            const letterTextDiv = letterContent.querySelector('.letter-text');
+            if (!letterTextDiv) return;
 
-                // Launch a few flowers when the letter is opened
-                if (typeof launchFlowers === 'function') {
-                    setTimeout(() => {
-                        launchFlowers(5);
-                    }, 1000);
-                }
+            // Set letter content
+            letterTextDiv.innerHTML = letterHtml;
+
+            // Animate paragraphs with staggered delay
+            const paragraphs = letterTextDiv.querySelectorAll('p');
+            paragraphs.forEach((paragraph, index) => {
+                setTimeout(() => {
+                    paragraph.style.opacity = '1';
+                    paragraph.style.transform = 'translateY(0)';
+                }, 300 * index); // Stagger by 300ms per paragraph
+            });
+
+            // Launch a few flowers when the letter is opened
+            if (typeof launchFlowers === 'function') {
+                setTimeout(() => {
+                    launchFlowers(5);
+                }, 1000);
             }
-        }, eventType === 'touchend' ? {passive: true} : false);
-    });
+        }
+    }
+
+    // Special handling for iOS devices
+    if (isIOS) {
+        // Use simpler event handling for iOS
+        letterButton.addEventListener('click', toggleLetter);
+    } else {
+        // Use both click and touchend for other devices
+        ['click', 'touchend'].forEach(eventType => {
+            letterButton.addEventListener(eventType, toggleLetter,
+                eventType === 'touchend' ? {passive: false} : false);
+        });
+    }
 }
 
 // ------- SWIPE SUPPORT --------
@@ -935,25 +1005,51 @@ function addSwipeSupport() {
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     if (!isTouchDevice) return;
 
-    // Simple swipe detection to navigate between sections
+    // Check if device is iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+    // Disable swipe navigation on iOS to prevent blinking/jumping
+    if (isIOS) {
+        // Instead of swipe navigation, we'll just improve touch behavior
+        document.querySelectorAll('button, .memory-card, .slider-nav, .letter-button').forEach(el => {
+            el.style.touchAction = 'manipulation';
+            el.style.webkitTapHighlightColor = 'transparent';
+        });
+        return;
+    }
+
+    // For non-iOS touch devices, implement swipe with improved behavior
     let touchStartY = 0;
     let touchEndY = 0;
+    let isSwiping = false;
+    let swipeThreshold = 80; // Reduced threshold for better responsiveness
 
     document.addEventListener('touchstart', function(e) {
         touchStartY = e.touches[0].clientY;
+        isSwiping = false;
+    }, {passive: true});
+
+    document.addEventListener('touchmove', function(e) {
+        // Mark as swiping during move to prevent other interactions
+        if (Math.abs(e.touches[0].clientY - touchStartY) > 30) {
+            isSwiping = true;
+        }
     }, {passive: true});
 
     document.addEventListener('touchend', function(e) {
+        if (!isSwiping) return; // Only process if we're actually swiping
+
         touchEndY = e.changedTouches[0].clientY;
         handleVerticalSwipe();
+        isSwiping = false;
     }, {passive: true});
 
     function handleVerticalSwipe() {
         const sections = document.querySelectorAll('section');
         if (!sections.length) return;
 
-        // Only respond to strong swipes
-        if (Math.abs(touchStartY - touchEndY) < 100) return;
+        // Only respond to strong enough swipes
+        if (Math.abs(touchStartY - touchEndY) < swipeThreshold) return;
 
         const currentSection = getCurrentSection(sections);
         if (currentSection === -1) return;
@@ -984,11 +1080,11 @@ function addSwipeSupport() {
     }
 
     function scrollToSection(section) {
-        if (window.Lenis) {
-            lenis.scrollTo(section);
-        } else {
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
+        // Use native smooth scrolling for better performance
+        section.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
     }
 }
 
