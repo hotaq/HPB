@@ -1079,8 +1079,8 @@ function initBentoGallery() {
             url: "image/IMG_2495.MOV",
             span: "span-1-3"
         },
-       
-       
+
+
     ];
 
     let selectedItem = null;
@@ -1091,9 +1091,24 @@ function initBentoGallery() {
     function populateGrid() {
         bentoGrid.innerHTML = '';
 
+        // Check if we're on mobile
+        const isMobileView = window.innerWidth <= 480;
+
         mediaItems.forEach((item, index) => {
             const itemElement = document.createElement('div');
-            itemElement.className = `bento-item ${item.span}`;
+
+            // Adjust spans for mobile view
+            let spanClass = item.span;
+            if (isMobileView) {
+                // Simplify spans on mobile
+                if (spanClass === 'span-2-3') {
+                    spanClass = 'span-1-2';
+                } else if (spanClass === 'span-1-3') {
+                    spanClass = 'span-1-2';
+                }
+            }
+
+            itemElement.className = `bento-item ${spanClass}`;
             itemElement.dataset.id = item.id;
             itemElement.style.animationDelay = `${index * 0.05}s`;
 
@@ -1531,4 +1546,13 @@ function initBentoGallery() {
     // Initialize
     populateGrid();
     makeThumbnailDockDraggable();
+
+    // Handle window resize to update grid layout
+    window.addEventListener('resize', () => {
+        // Debounce resize event
+        if (window.resizeTimer) clearTimeout(window.resizeTimer);
+        window.resizeTimer = setTimeout(() => {
+            populateGrid();
+        }, 250);
+    });
 }

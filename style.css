@@ -29,15 +29,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
-    
+
+
 }
 
 
 body {
     font-family: 'IBM Plex Sans Thai Looped', sans-serif;
     margin: 0;
-    
+
     padding: 0;
     background-color: var(--background);
     color: var(--text);
@@ -47,7 +47,7 @@ body {
 h1, h2, h3 {
     font-family: 'IBM Plex Sans Thai Looped', sans-serif;
     color: var(--primary);
-    
+
 }
 
 section {
@@ -823,16 +823,16 @@ section {
     .text-5xl {
         font-size: 2.5rem;
     }
-    
+
     .text-3xl {
         font-size: 1.75rem;
     }
-    
+
     .py-20 {
         padding-top: 4rem;
         padding-bottom: 4rem;
     }
-    
+
     .slider-container {
         height: 350px;
     }
@@ -842,41 +842,41 @@ section {
     .text-5xl {
         font-size: 2rem;
     }
-    
+
     .text-3xl {
         font-size: 1.5rem;
     }
-    
+
     .text-xl {
         font-size: 1.1rem;
     }
-    
+
     .memory-game {
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 10px;
     }
-    
+
     .slider-item {
         flex: 0 0 calc(50% - 20px);
     }
-    
+
     .letter-text {
         font-size: 1.1em;
     }
-    
+
     .py-20 {
         padding-top: 3rem;
         padding-bottom: 3rem;
     }
-    
+
     .slider-container {
         height: 300px;
     }
-    
+
     .memory-card {
         height: 100px;
     }
-    
+
     .front-face, .back-face {
         font-size: 32px;
     }
@@ -896,7 +896,7 @@ section {
     .scroll-indicator {
         bottom: 15px;
     }
-    
+
     .floating-hearts {
         opacity: 0.7;
     }
@@ -910,64 +910,64 @@ section {
     .text-5xl {
         font-size: 1.75rem;
     }
-    
+
     .text-3xl {
         font-size: 1.35rem;
     }
-    
+
     .text-xl {
         font-size: 1rem;
     }
-    
+
     .memory-game {
         grid-template-columns: repeat(2, 1fr);
         max-width: 280px;
     }
-    
+
     .slider-item {
         flex: 0 0 calc(100% - 20px);
     }
-    
+
     .photo-grid {
         grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
         grid-gap: 10px;
     }
-    
+
     .letter-text {
         font-size: 1em;
     }
-    
+
     .letter-content {
         padding: 20px 15px;
     }
-    
+
     .memory-card {
         height: 90px;
     }
-    
+
     .front-face, .back-face {
         font-size: 28px;
         padding: 8px;
     }
-    
+
     .clickable-box, .letter-button {
         padding: 12px 24px;
         font-size: 0.95em;
     }
-    
+
     .py-20 {
         padding-top: 2.5rem;
         padding-bottom: 2.5rem;
     }
-    
+
     .slider-container {
         height: 250px;
     }
-    
+
     .photo-item {
         height: 160px;
     }
-    
+
     .py-10 {
         padding-top: 1.5rem;
         padding-bottom: 1.5rem;
@@ -1016,24 +1016,24 @@ section {
     .text-5xl {
         font-size: 1.5rem;
     }
-    
+
     .memory-game {
         max-width: 250px;
     }
-    
+
     .memory-card {
         height: 80px;
     }
-    
+
     .front-face, .back-face {
         font-size: 24px;
         padding: 6px;
     }
-    
+
     .slider-container {
         height: 220px;
     }
-    
+
     .photo-item {
         height: 140px;
     }
@@ -1069,13 +1069,13 @@ section {
         padding-top: 15px;
         padding-bottom: 15px;
     }
-    
+
     .slider-nav {
         width: 50px;
         height: 50px;
         font-size: 28px;
     }
-    
+
     .photo-caption {
         /* Always show captions on touch devices */
         transform: translateY(0);
@@ -1132,7 +1132,7 @@ section {
     align-items: center;
     justify-content: center;
     outline: orange;
-    
+
 }
 
 
@@ -1356,31 +1356,31 @@ html, body {
 /* Add touch-specific improvements */
 @media (hover: none) {
     /* Improve touch targets */
-    button, 
-    .clickable-box, 
+    button,
+    .clickable-box,
     .letter-button,
     .slider-nav,
     .memory-card {
         cursor: pointer;
         -webkit-tap-highlight-color: transparent;
     }
-    
+
     /* Fix iOS Safari 100vh issue */
     #intro {
         height: 100vh;
         height: -webkit-fill-available;
         height: stretch;
     }
-    
+
     /* Better scroll indications for touch */
     .scroll-indicator {
         opacity: 0.8;
         animation-duration: 2s;
     }
-    
+
     /* Ensure elements have proper hit areas for touch */
-    button, 
-    .clickable-box, 
+    button,
+    .clickable-box,
     .letter-button,
     .memory-card,
     .slider-nav {
@@ -1394,25 +1394,25 @@ html, body {
     html {
         font-size: 14px;
     }
-    
+
     .text-5xl {
         font-size: 1.4rem;
     }
-    
+
     .text-3xl {
         font-size: 1.2rem;
     }
-    
+
     .birthday-button,
     .letter-button {
         font-size: 0.85rem;
         padding: 8px 16px;
     }
-    
+
     .letter-text {
         font-size: 0.9em;
     }
-    
+
     .slider-container {
         height: 200px;
     }
@@ -1497,7 +1497,7 @@ html, body {
     pointer-events: none;
     z-index: 1;
     background-color: rgba(250, 239, 210, 0.6); /* Warmer beige background like the image */
-    background-image: 
+    background-image:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 5C28 10 25 12 20 15C15 18 10 20 5 30C10 40 15 42 20 45C25 48 28 50 30 55C32 50 35 48 40 45C45 42 50 40 55 30C50 20 45 18 40 15C35 12 32 10 30 5Z' fill='none' stroke='%23e54c7c' stroke-width='1.5' stroke-dasharray='3,2' opacity='0.6'/%3E%3Ccircle cx='30' cy='30' r='3' fill='%23FFD700' opacity='0.4'/%3E%3C/svg%3E"),
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M60 20C55 35 45 45 35 50C25 55 15 60 10 80C25 100 35 105 50 110C65 115 75 115 80 120C85 115 95 115 110 110C125 105 135 100 150 80C145 60 135 55 125 50C115 45 105 35 100 20C95 35 85 45 75 50C65 55 55 55 50 60C45 55 35 55 25 50C15 45 5 35 0 20Z' fill='none' stroke='%23B22222' stroke-width='2' stroke-dasharray='3,3' opacity='0.3'/%3E%3C/svg%3E");
     mix-blend-mode: multiply;
@@ -1525,7 +1525,7 @@ html, body {
     height: 100%;
     top: 0;
     left: 0;
-    background-image: 
+    background-image:
         radial-gradient(circle, rgba(178, 34, 34, 0.1) 1px, transparent 1px),
         radial-gradient(circle, rgba(218, 165, 32, 0.1) 1px, transparent 1px);
     background-size: 30px 30px, 20px 20px;
@@ -1612,12 +1612,12 @@ html, body {
         width: 100px;
         height: 100px;
     }
-    
+
     .cat-illustration.top-left {
         top: 10%;
         left: 5%;
     }
-    
+
     .cat-illustration.bottom-right {
         bottom: 10%;
         right: 5%;
@@ -1749,21 +1749,26 @@ html, body {
 /* Bento Gallery Styles */
 .bento-grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Start with 2 columns on mobile */
     gap: 12px;
-    grid-auto-rows: 60px;
+    grid-auto-rows: 100px; /* Increased from 60px for better mobile visibility */
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
 }
 
 /* Responsive grid layout */
 @media (min-width: 640px) {
     .bento-grid {
         grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 80px;
     }
 }
 
 @media (min-width: 768px) {
     .bento-grid {
         grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 60px;
     }
 }
 
@@ -1801,6 +1806,24 @@ html, body {
 .span-2-3 {
     grid-column: span 2;
     grid-row: span 3;
+}
+
+/* Adjust spans for mobile */
+@media (max-width: 480px) {
+    .span-2-2, .span-2-3 {
+        grid-column: span 1; /* On small screens, don't span columns */
+        grid-row: span 2; /* Reduce row span for better mobile layout */
+    }
+
+    .span-1-3 {
+        grid-row: span 2; /* Reduce row span on mobile */
+    }
+
+    /* Ensure all items are visible */
+    .bento-item {
+        min-height: 150px;
+        max-height: 250px;
+    }
 }
 
 .bento-item img,
@@ -2065,4 +2088,4 @@ html, body {
     background: linear-gradient(135deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
     color: transparent;
-} 
+}
