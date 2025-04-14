@@ -1209,26 +1209,58 @@ function initBentoGallery() {
 
             // Create media element based on type
             if (item.type === 'video') {
-                const video = document.createElement('video');
-                video.src = item.url;
-                video.muted = true;
-                video.loop = true;
-                video.playsInline = true;
-                video.preload = 'metadata';
+                // Check if device is iOS
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-                // Add loading spinner
-                const loadingElem = document.createElement('div');
-                loadingElem.className = 'video-loading';
-                loadingElem.innerHTML = '<div class="spinner"></div>';
+                // Create a poster image for iOS devices to show instead of loading spinner
+                if (isIOS) {
+                    // For iOS, use an image with a play button overlay instead of video preview
+                    const imgContainer = document.createElement('div');
+                    imgContainer.className = 'ios-video-container';
 
-                itemElement.appendChild(video);
-                itemElement.appendChild(loadingElem);
+                    // Extract a frame from the video if possible, or use a placeholder
+                    const img = document.createElement('img');
+                    // Use the first frame of the video as poster if available
+                    // Otherwise use a generic video thumbnail
+                    img.src = 'image/video-thumbnail.svg'; // SVG fallback image
+                    img.alt = item.title;
 
-                // Store video reference
-                videoRefs[item.id] = video;
+                    // Add play button overlay
+                    const playButton = document.createElement('div');
+                    playButton.className = 'play-button-overlay';
+                    playButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48"><path fill="white" d="M8 5v14l11-7z"/></svg>';
 
-                // Set up intersection observer for video
-                observeVideo(video, loadingElem);
+                    imgContainer.appendChild(img);
+                    imgContainer.appendChild(playButton);
+                    itemElement.appendChild(imgContainer);
+
+                    // Store the video URL for later use when clicked
+                    itemElement.dataset.videoUrl = item.url;
+                } else {
+                    // For non-iOS devices, use the original video preview approach
+                    const video = document.createElement('video');
+                    video.src = item.url;
+                    video.muted = true;
+                    video.loop = true;
+                    video.playsInline = true;
+                    video.preload = 'metadata';
+                    video.setAttribute('playsinline', ''); // Extra attribute for iOS
+                    video.setAttribute('webkit-playsinline', ''); // For older iOS versions
+
+                    // Add loading spinner
+                    const loadingElem = document.createElement('div');
+                    loadingElem.className = 'video-loading';
+                    loadingElem.innerHTML = '<div class="spinner"></div>';
+
+                    itemElement.appendChild(video);
+                    itemElement.appendChild(loadingElem);
+
+                    // Store video reference
+                    videoRefs[item.id] = video;
+
+                    // Set up intersection observer for video
+                    observeVideo(video, loadingElem);
+                }
             } else {
                 const img = document.createElement('img');
                 img.src = item.url;
@@ -1479,6 +1511,9 @@ function initBentoGallery() {
         modalTitle.textContent = item.title;
         modalDesc.textContent = item.desc;
 
+        // Check if device is iOS
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
         // Create media element based on type
         modalMediaContainer.innerHTML = '';
         if (item.type === 'video') {
@@ -1487,8 +1522,34 @@ function initBentoGallery() {
             video.controls = true;
             video.muted = false;
             video.autoplay = true;
+            video.playsInline = true;
+            video.setAttribute('playsinline', ''); // Extra attribute for iOS
+            video.setAttribute('webkit-playsinline', ''); // For older iOS versions
 
-            modalMediaContainer.appendChild(video);
+            // For iOS, add poster and make sure controls are visible
+            if (isIOS) {
+                // Create a play button that will trigger video play on iOS
+                const playOverlay = document.createElement('div');
+                playOverlay.className = 'ios-play-overlay';
+                playOverlay.innerHTML = '<div class="big-play-button">▶</div>';
+
+                // Add click event to manually start the video
+                playOverlay.addEventListener('click', function() {
+                    video.play()
+                        .then(() => {
+                            // Hide overlay once video starts playing
+                            playOverlay.style.display = 'none';
+                        })
+                        .catch(error => {
+                            console.warn('Could not play video:', error);
+                        });
+                });
+
+                modalMediaContainer.appendChild(video);
+                modalMediaContainer.appendChild(playOverlay);
+            } else {
+                modalMediaContainer.appendChild(video);
+            }
         } else {
             const img = document.createElement('img');
             img.src = item.url;

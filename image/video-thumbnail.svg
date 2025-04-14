@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#333333"/>
+  
+  <!-- Play button circle -->
+  <circle cx="200" cy="150" r="50" fill="rgba(255, 255, 255, 0.2)" stroke="white" stroke-width="2"/>
+  
+  <!-- Play triangle -->
+  <path d="M185,125 L185,175 L230,150 Z" fill="white"/>
+  
+  <!-- Video text -->
+  <text x="200" y="230" font-family="Arial" font-size="16" fill="white" text-anchor="middle">Video</text>
+</svg>
