@@ -344,7 +344,7 @@ function initBalloons(isMobile = false) {
 
         // Launch one text flower after a delay
         setTimeout(() => {
-            createTextFlower("Happy Birthday!");
+            createTextFlower("สวยมั้ยดอกไม้แบบนี้ 🌺");
         }, 2000);
 
         // Show more confetti
@@ -877,17 +877,16 @@ function initLetterReveal() {
 
     // Updated letter content with birthday theme
     const letterHtml = `
-        <p>My Dearest Birthday Star,</p>
+        <p>Dear Aomsin,</p>
 
-        <p>As I write this birthday letter, my heart is overflowing with the deepest love and gratitude for having you in my life. Today marks another beautiful year of your journey, and I'm so blessed to celebrate it with you. From the moment we first met, my world changed forever in the most wonderful way.</p>
+        <p>Guess what day it is todayyy?? It's Aom's birthdayyy! Happy birthday to my dear Aom. Kisses! </p>
+        <P>I still remember it was around your birthday time when I followed your IG. I saw something really cute. Looked around a bit, and then, oops, I messaged you. We messaged back and forth, and then we started dating!</p>
+        <p>I hope you have lots and lots of happiness! Are you turning 16 or 17? 17! Google says 2551 (the year) means 17. So, Aom is 17! Hehe.</p>
 
-        <p>Each year with you has been more extraordinary than the last. I cherish every laugh we've shared, every challenge we've overcome together, and every quiet moment just being in each other's presence. You've taught me what it means to truly love someone with my whole heart.</p>
+        <p>Let's stay together for a long time. Don't be too stubborn, okay? Or I'll have to tell you off!"
+</p>
 
-        <p>On your special day, I want you to know that you're the most amazing person I've ever known. Your kindness touches everyone around you. Your smile lights up even my darkest days. Your passion inspires me to be better. I fall more in love with you with each passing day.</p>
-
-        <p>Thank you for being my partner, my best friend, my confidant, and my greatest adventure. Having you in my life is the greatest gift I could ever ask for.</p>
-
-        <p>Today is all about celebrating the incredible person you are and the immeasurable joy you bring to my life. May this new year of your life bring you all the happiness, success, and love that you deserve.</p>
+        
 
         <p class="signature">Forever and always yours, ❤️</p>
     `;
